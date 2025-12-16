@@ -1,0 +1,464 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "role": "nurse",
+      "qualifications": [
+        "ICU"
+      ],
+      "contractFTE": 1.0,
+      "activeFrom": "2024-01-01",
+      "activeTo": null,
+      "availability": [
+        {
+          "weekday": 0,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 1,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 2,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 3,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 4,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 5,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 6,
+          "start": "07:00",
+          "end": "19:00"
+        }
+      ],
+      "timeOff": []
+    },
+    {
+      "id": "u2",
+      "role": "nurse",
+      "qualifications": [
+        "ICU"
+      ],
+      "contractFTE": 0.8,
+      "activeFrom": "2024-01-01",
+      "activeTo": null,
+      "availability": [
+        {
+          "weekday": 0,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 1,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 2,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 3,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 4,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 5,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 6,
+          "start": "07:00",
+          "end": "19:00"
+        }
+      ],
+      "timeOff": []
+    },
+    {
+      "id": "u3",
+      "role": "nurse",
+      "qualifications": [
+        "Ward"
+      ],
+      "contractFTE": 1.0,
+      "activeFrom": "2024-01-01",
+      "activeTo": null,
+      "availability": [
+        {
+          "weekday": 0,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 1,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 2,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 3,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 4,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 5,
+          "start": "07:00",
+          "end": "19:00"
+        },
+        {
+          "weekday": 6,
+          "start": "07:00",
+          "end": "19:00"
+        }
+      ],
+      "timeOff": []
+    }
+  ],
+  "shifts": [
+    {
+      "id": "s1",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 0,
+      "date": "2024-01-15",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s2",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 1,
+      "date": "2024-01-16",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s3",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 2,
+      "date": "2024-01-17",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s4",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 3,
+      "date": "2024-01-18",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s5",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 4,
+      "date": "2024-01-19",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s6",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 5,
+      "date": "2024-01-20",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s7",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 6,
+      "date": "2024-01-21",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s8",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 0,
+      "date": "2024-01-22",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s9",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 1,
+      "date": "2024-01-23",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "s10",
+      "periodId": "hist1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 2,
+      "date": "2024-01-24",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "t2024-02-10",
+      "periodId": "target1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 5,
+      "date": "2024-02-10",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "t2024-02-11",
+      "periodId": "target1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 6,
+      "date": "2024-02-11",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "t2024-02-12",
+      "periodId": "target1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 0,
+      "date": "2024-02-12",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "t2024-02-13",
+      "periodId": "target1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 1,
+      "date": "2024-02-13",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "t2024-02-14",
+      "periodId": "target1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 2,
+      "date": "2024-02-14",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "t2024-02-15",
+      "periodId": "target1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 3,
+      "date": "2024-02-15",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    },
+    {
+      "id": "t2024-02-16",
+      "periodId": "target1",
+      "unit": "ICU",
+      "shiftType": "Day",
+      "weekday": 4,
+      "date": "2024-02-16",
+      "start": "08:00",
+      "end": "16:00",
+      "parallelShiftIds": [],
+      "requiredQualifications": [
+        "ICU"
+      ],
+      "isHoliday": false,
+      "requests": []
+    }
+  ],
+  "assignments": [
+    {
+      "shiftId": "s1",
+      "userId": "u1"
+    },
+    {
+      "shiftId": "s2",
+      "userId": "u1"
+    },
+    {
+      "shiftId": "s3",
+      "userId": "u2"
+    },
+    {
+      "shiftId": "s4",
+      "userId": "u1"
+    },
+    {
+      "shiftId": "s5",
+      "userId": "u1"
+    },
+    {
+      "shiftId": "s6",
+      "userId": "u2"
+    },
+    {
+      "shiftId": "s7",
+      "userId": "u1"
+    },
+    {
+      "shiftId": "s8",
+      "userId": "u1"
+    },
+    {
+      "shiftId": "s9",
+      "userId": "u2"
+    },
+    {
+      "shiftId": "s10",
+      "userId": "u1"
+    }
+  ]
+}

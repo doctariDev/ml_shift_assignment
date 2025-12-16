@@ -1,0 +1,138 @@
+{
+"shift_plan": {
+    "customer": {
+    "id": 100,
+    "name": "Sample Hospital",
+    "zone_id": "Europe/Berlin"
+    },
+    "employees": [
+    {"uuid": "E0001", "name": "Alice", "qualifications": [{"id": 1}], "timed_properties": [{"weekly_hours": 40}]},
+    {"uuid": "E0002", "name": "Bob", "qualifications": [{"id": 1}], "timed_properties": [{"weekly_hours": 40}]},
+    {"uuid": "E0003", "name": "Carol", "qualifications": [{"id": 1}, {"id": 2}], "timed_properties": [{"weekly_hours": 32}]},
+    {"uuid": "E0004", "name": "Dave", "qualifications": [{"id": 2}], "timed_properties": [{"weekly_hours": 20}]},
+    {"uuid": "E0005", "name": "Eve", "qualifications": [{"id": 1}], "timed_properties": [{"weekly_hours": 30}]},
+    {"uuid": "E0006", "name": "Frank", "qualifications": [{"id": 2}], "timed_properties": [{"weekly_hours": 38}]},
+    {"uuid": "E0007", "name": "Grace", "qualifications": [{"id": 1}], "timed_properties": [{"weekly_hours": 24}]},
+    {"uuid": "E0008", "name": "Heidi", "qualifications": [{"id": 1}, {"id": 2}], "timed_properties": [{"weekly_hours": 40}]},
+    {"uuid": "E0009", "name": "Ivan", "qualifications": [{"id": 2}], "timed_properties": [{"weekly_hours": 36}]},
+    {"uuid": "E0010", "name": "Judy", "qualifications": [{"id": 1}], "timed_properties": [{"weekly_hours": 28}]},
+    {"uuid": "E0015", "name": "Dr.Holiday", "qualifications": [{"id": 1}, {"id": 2}], "timed_properties": [{"weekly_hours": 40}]}
+
+    ],
+    "shifts": [
+        {"id": 10001, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2026-01-09T08:00:00+01:00", "end_date_time": "2026-01-09T16:00:00+01:00", "qualification_ids": [1]},
+        {"id": 10002, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2026-01-09T16:00:00+01:00", "end_date_time": "2026-01-09T22:00:00+01:00", "qualification_ids": [2]},
+        {"id": 10003, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2026-01-10T08:00:00+01:00", "end_date_time": "2026-01-10T16:00:00+01:00", "qualification_ids": [1]},
+        {"id": 10004, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2026-01-10T16:00:00+01:00", "end_date_time": "2026-01-10T22:00:00+01:00", "qualification_ids": [2]},
+        {"id": 10005, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2026-01-11T08:00:00+01:00", "end_date_time": "2026-01-11T16:00:00+01:00", "qualification_ids": [1]},
+        {"id": 10006, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2026-01-11T16:00:00+01:00", "end_date_time": "2026-01-11T22:00:00+01:00", "qualification_ids": [2]},
+        {"id": 10007, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2026-01-12T08:00:00+01:00", "end_date_time": "2026-01-12T16:00:00+01:00", "qualification_ids": [1]}
+    ],
+    "shift_assignments": [],
+
+},
+"past_shift_plans": [
+  {
+  "id": 9001,
+  "customer": {"zone_id": "Europe/Berlin"},
+  "shifts": [
+      {"id": 90001, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-11-21T08:00:00+01:00", "end_date_time": "2025-11-21T16:00:00+01:00", "qualification_ids": [1]},
+      {"id": 90002, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-11-21T16:00:00+01:00", "end_date_time": "2025-11-21T22:00:00+01:00", "qualification_ids": [2]},
+      {"id": 90003, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-11-22T08:00:00+01:00", "end_date_time": "2025-11-22T16:00:00+01:00", "qualification_ids": [1]},
+      {"id": 90004, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-11-22T16:00:00+01:00", "end_date_time": "2025-11-22T22:00:00+01:00", "qualification_ids": [2]},
+      {"id": 90005, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-11-23T08:00:00+01:00", "end_date_time": "2025-11-23T16:00:00+01:00", "qualification_ids": [1]},
+      {"id": 90006, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-11-23T16:00:00+01:00", "end_date_time": "2025-11-23T22:00:00+01:00", "qualification_ids": [2]},
+      {"id": 90007, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-11-24T08:00:00+01:00", "end_date_time": "2025-11-24T16:00:00+01:00", "qualification_ids": [1]}
+
+    ],
+        "shift_assignments": [
+          {"shift_id": 90001, "employee_uuid": "E0001"},
+          {"shift_id": 90002, "employee_uuid": "E0015"},
+          {"shift_id": 90003, "employee_uuid": "E0001"},
+          {"shift_id": 90004, "employee_uuid": "E0006"},
+          {"shift_id": 90005, "employee_uuid": "E0002"},
+          {"shift_id": 90006, "employee_uuid": "E0006"},
+          {"shift_id": 90007, "employee_uuid": "E0002"}
+        ],
+    "public_holidays" : [
+      {
+          "date" : "2025-11-21",
+          "name" : "Fronleichnam",
+          "start" : "2025-11-21T01:00:00Z",
+          "end" : "2025-11-21T23:00:00Z",
+          "rule" : "easter 60",
+          "type" : "public"
+    }
+    ]
+  },
+  {
+  "id": 9003,
+  "customer": {"zone_id": "Europe/Berlin"},
+  "shifts": [
+          {"id": 20001, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-07-11T08:00:00+01:00", "end_date_time": "2025-07-11T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 20002, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-07-11T16:00:00+01:00", "end_date_time": "2025-07-11T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 20003, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-07-12T08:00:00+01:00", "end_date_time": "2025-07-12T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 20004, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-07-12T16:00:00+01:00", "end_date_time": "2025-07-12T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 20005, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-07-13T08:00:00+01:00", "end_date_time": "2025-07-13T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 20006, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-07-13T16:00:00+01:00", "end_date_time": "2025-07-13T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 20007, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-07-14T08:00:00+01:00", "end_date_time": "2025-07-14T16:00:00+01:00", "qualification_ids": [1]}
+
+    ],
+    "shift_assignments": [
+      {"shift_id": 20001, "employee_uuid": "E0001"},
+      {"shift_id": 20002, "employee_uuid": "E0006"},
+      {"shift_id": 20003, "employee_uuid": "E0001"},
+      {"shift_id": 20004, "employee_uuid": "E0006"},
+      {"shift_id": 20005, "employee_uuid": "E0002"},
+      {"shift_id": 20006, "employee_uuid": "E0006"},
+      {"shift_id": 20007, "employee_uuid": "E0002"}
+    ]
+  },
+  {
+  "id": 9002,
+  "customer": {"zone_id": "Europe/Berlin"},
+  "shifts": [
+          {"id": 80001, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-11-14T08:00:00+01:00", "end_date_time": "2025-11-14T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 80002, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-11-14T16:00:00+01:00", "end_date_time": "2025-11-14T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 80003, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-11-15T08:00:00+01:00", "end_date_time": "2025-11-15T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 80004, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-11-15T16:00:00+01:00", "end_date_time": "2025-11-15T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 80005, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-11-16T08:00:00+01:00", "end_date_time": "2025-11-16T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 80006, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-11-16T16:00:00+01:00", "end_date_time": "2025-11-16T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 80007, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-11-17T08:00:00+01:00", "end_date_time": "2025-11-17T16:00:00+01:00", "qualification_ids": [1]}
+
+  ],
+  "shift_assignments": [
+      {"shift_id": 80001, "employee_uuid": "E0001"},
+      {"shift_id": 80002, "employee_uuid": "E0006"},
+      {"shift_id": 80003, "employee_uuid": "E0001"},
+      {"shift_id": 80004, "employee_uuid": "E0006"},
+      {"shift_id": 80005, "employee_uuid": "E0002"},
+      {"shift_id": 80006, "employee_uuid": "E0006"},
+      {"shift_id": 80007, "employee_uuid": "E0002"}
+    ]
+  },
+  {
+  "id": 9004,
+  "customer": {"zone_id": "Europe/Berlin"},
+  "shifts": [
+          {"id": 80001, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-05-02T08:00:00+01:00", "end_date_time": "2025-05-02T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 80002, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-05-02T16:00:00+01:00", "end_date_time": "2025-05-02T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 80003, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-05-03T08:00:00+01:00", "end_date_time": "2025-05-03T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 80004, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-05-03T16:00:00+01:00", "end_date_time": "2025-05-03T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 80005, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-05-04T08:00:00+01:00", "end_date_time": "2025-05-04T16:00:00+01:00", "qualification_ids": [1]},
+          {"id": 80006, "workplace_id": 10, "shift_card_id": "EVE", "start_date_time": "2025-05-04T16:00:00+01:00", "end_date_time": "2025-05-04T22:00:00+01:00", "qualification_ids": [2]},
+          {"id": 80007, "workplace_id": 10, "shift_card_id": "DAY", "start_date_time": "2025-05-05T08:00:00+01:00", "end_date_time": "2025-05-05T16:00:00+01:00", "qualification_ids": [1]}
+
+    ],
+    "shift_assignments": [
+      {"shift_id": 80001, "employee_uuid": "E0001"},
+      {"shift_id": 80002, "employee_uuid": "E0006"},
+      {"shift_id": 80003, "employee_uuid": "E0001"},
+      {"shift_id": 80004, "employee_uuid": "E0006"},
+      {"shift_id": 80005, "employee_uuid": "E0002"},
+      {"shift_id": 80006, "employee_uuid": "E0006"},
+      {"shift_id": 80007, "employee_uuid": "E0002"}
+    ]
+  }
+]
+}

@@ -1,0 +1,3000 @@
+{
+  "execution_strategy" : "EVALUATE",
+  "rules" : [ {
+    "id" : "WORKPLACE_PREFERENCE",
+    "quantifier" : -1,
+    "activated" : true
+  } ],
+  "shift_plan" : {
+    "id" : 100000783,
+    "customer_id" : 43,
+    "shift_group_id" : 206,
+    "planning_period" : {
+      "start_date" : "2022-09-05",
+      "end_date" : "2022-10-02"
+    },
+    "shifts" : [
+      {
+      "id" : 1,
+      "start_date_time" : "2022-09-10T06:00:00Z",
+      "end_date_time" : "2022-09-10T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    },
+      {
+      "id" : 2,
+      "start_date_time" : "2022-09-11T06:00:00Z",
+      "end_date_time" : "2022-09-11T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    },
+      {
+      "id" : 3,
+      "start_date_time" : "2022-09-17T06:00:00Z",
+      "end_date_time" : "2022-09-17T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    },
+      {
+      "id" : 4,
+      "start_date_time" : "2022-09-18T06:00:00Z",
+      "end_date_time" : "2022-09-18T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }
+    ],
+    "shift_assignments" : [ {
+      "shift_id" : 100164959,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    } ],
+    "workplace_priorities" : [ ],
+    "blocked_times" : [ ],
+    "customer" : {
+      "id" : 43,
+      "name" : "APConfig",
+      "zone_id" : "Europe/Berlin",
+      "country_code" : "DE"
+    },
+    "employees" : [ {
+      "uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "first_name" : "Wp",
+      "last_name" : "WP1",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ ],
+      "timed_properties" : [ {
+        "weekly_hours" : 50.0,
+        "weekly_days" : 7,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 731,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 0,
+      "qualifications" : [ {
+        "id" : 407,
+        "name" : "Wishes",
+        "activated_at" : "2024-01-31"
+      } ],
+      "shift_group_rotations" : [ ]
+    }, {
+      "uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "first_name" : "Admin",
+      "last_name" : "Planerio",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ 124 ],
+      "timed_properties" : [ {
+        "weekly_hours" : 40.0,
+        "weekly_days" : 5,
+        "valid_from" : "2024-08-01T00:00:00+02:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      }, {
+        "weekly_hours" : 40.0,
+        "weekly_days" : 5,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 566,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 6,
+      "qualifications" : [ ],
+      "shift_group_rotations" : [ ]
+    }, {
+      "uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "first_name" : "Nina",
+      "last_name" : "Gutherz",
+      "primary_shift_group_id" : 124,
+      "secondary_shift_group_ids" : [ 256, 387, 263, 203, 204, 205, 206, 207, 208, 209, 211, 214, 215, 216, 280, 217, 218, 220, 157, 287, 224, 161, 225, 226, 230, 231, 233, 362, 172, 237, 238, 177, 241, 309, 251, 124, 252, 444, 125, 381 ],
+      "timed_properties" : [ {
+        "weekly_hours" : 0.0,
+        "weekly_days" : 4,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      }, {
+        "weekly_hours" : 10.0,
+        "weekly_days" : 4,
+        "valid_from" : "2023-11-30T00:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 115
+      } ],
+      "availability_recurring_weeks" : 2,
+      "is_automatically_planned" : true,
+      "legacy_id" : 569,
+      "max_day_shifts" : 8,
+      "max_night_shifts" : 8,
+      "early_shift_chain" : 8,
+      "late_shift_chain" : 8,
+      "night_shift_chain" : 8,
+      "timetrack_profile_id" : 6,
+      "qualifications" : [ {
+        "id" : 290,
+        "name" : "Frühschicht"
+      }, {
+        "id" : 291,
+        "name" : "Spätschicht"
+      }, {
+        "id" : 292,
+        "name" : "Mittagscheck"
+      }, {
+        "id" : 317,
+        "name" : "TestNoQuali"
+      }, {
+        "id" : 318,
+        "name" : "NoEmployeeQualif"
+      }, {
+        "id" : 319,
+        "name" : "VirtualNonOverlap"
+      }, {
+        "id" : 320,
+        "name" : "VirtualOverlap"
+      }, {
+        "id" : 321,
+        "name" : "Longer18h"
+      }, {
+        "id" : 322,
+        "name" : "Less15min"
+      }, {
+        "id" : 323,
+        "name" : "Parallelpreplanned"
+      }, {
+        "id" : 326,
+        "name" : "PreplannedNotHighestPrio"
+      }, {
+        "id" : 330,
+        "name" : "5Stunden"
+      }, {
+        "id" : 331,
+        "name" : "OnlyQualiMa1"
+      }, {
+        "id" : 332,
+        "name" : "PreplannedMa3"
+      }, {
+        "id" : 335,
+        "name" : "AlsoPreplannedParallel"
+      }, {
+        "id" : 354,
+        "name" : "TwoShiftGroupsNoQuali"
+      }, {
+        "id" : 383,
+        "name" : "SpätNCID"
+      }, {
+        "id" : 409,
+        "name" : "Morning"
+      }, {
+        "id" : 479,
+        "name" : "QCare1"
+      }, {
+        "id" : 619,
+        "name" : "Frühschicht"
+      } ],
+      "shift_group_rotations" : [ {
+        "shift_group_id" : 124,
+        "start_date" : "2025-08-04",
+        "id" : 27
+      } ]
+    }, {
+      "uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "first_name" : "Wp",
+      "last_name" : "Wp2",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ ],
+      "timed_properties" : [ {
+        "weekly_hours" : 50.0,
+        "weekly_days" : 7,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 732,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 0,
+      "qualifications" : [ {
+        "id" : 407,
+        "name" : "Wishes"
+      } ],
+      "shift_group_rotations" : [ ]
+    } ],
+    "shift_groups" : [ {
+      "id" : 206,
+      "name" : "WishesPriotities"
+    }, {
+      "id" : 124,
+      "name" : "APTest"
+    }, {
+      "id" : 256,
+      "name" : "GLZ"
+    }, {
+      "id" : 387,
+      "name" : "TestWPPage"
+    }, {
+      "id" : 263,
+      "name" : "CIW"
+    }, {
+      "id" : 203,
+      "name" : "Demo-Schichtgruppe"
+    }, {
+      "id" : 204,
+      "name" : "SCOW"
+    }, {
+      "id" : 205,
+      "name" : "SenseCheckWorkload"
+    }, {
+      "id" : 207,
+      "name" : "NCIDTwoRealShifts"
+    }, {
+      "id" : 208,
+      "name" : "AvoidHalfDays"
+    }, {
+      "id" : 209,
+      "name" : "NewDailyHours"
+    }, {
+      "id" : 211,
+      "name" : "RBUnitTag"
+    }, {
+      "id" : 214,
+      "name" : "MinimizeJumps"
+    }, {
+      "id" : 215,
+      "name" : "PreferredLocation"
+    }, {
+      "id" : 216,
+      "name" : "SecShiftGroupTest"
+    }, {
+      "id" : 280,
+      "name" : "EqualWorkplaceDistr"
+    }, {
+      "id" : 217,
+      "name" : "MinCommuteWeeks"
+    }, {
+      "id" : 218,
+      "name" : "PauseTimes"
+    }, {
+      "id" : 220,
+      "name" : "WishedVirtual"
+    }, {
+      "id" : 157,
+      "name" : "Pflege"
+    }, {
+      "id" : 287,
+      "name" : "PublicHoliday"
+    }, {
+      "id" : 224,
+      "name" : "SequentialPlanning"
+    }, {
+      "id" : 161,
+      "name" : "UnitTagMaxShiftsPerWeeklyHours"
+    }, {
+      "id" : 225,
+      "name" : "KKHDienstplan"
+    }, {
+      "id" : 226,
+      "name" : "KKHFunktionsplan"
+    }, {
+      "id" : 230,
+      "name" : "FuntionalitiesMultiplePlanningPeriods"
+    }, {
+      "id" : 231,
+      "name" : "MinWorkplacesPerWeek"
+    }, {
+      "id" : 233,
+      "name" : "MCID"
+    }, {
+      "id" : 362,
+      "name" : "BeispielSGDemo"
+    }, {
+      "id" : 172,
+      "name" : "TestSTDoutFile"
+    }, {
+      "id" : 237,
+      "name" : "SCIW"
+    }, {
+      "id" : 238,
+      "name" : "Care"
+    }, {
+      "id" : 177,
+      "name" : "MWSBW"
+    }, {
+      "id" : 241,
+      "name" : "VirtualOverlapCompensation"
+    }, {
+      "id" : 309,
+      "name" : "RestTimes"
+    }, {
+      "id" : 251,
+      "name" : "noSingleSun"
+    }, {
+      "id" : 252,
+      "name" : "MAXTagVirtShifts"
+    }, {
+      "id" : 444,
+      "name" : "TestShiftGroup Rules"
+    }, {
+      "id" : 125,
+      "name" : "APTest2"
+    }, {
+      "id" : 381,
+      "name" : "TestKafkaIntegration"
+    } ],
+    "workplaces" : [ {
+      "id" : 428,
+      "name" : "MediumPrio",
+      "location_id" : 88,
+      "ignore_break" : false
+    } ],
+    "employee_locations" : [ {
+      "location_id" : 88,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 47,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 200,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 47,
+      "employee_uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "preference_degree" : 2
+    } ],
+    "timetrack_profiles" : [ {
+      "id" : 6,
+      "is_alternative_break_deduction" : false,
+      "monday" : {
+        "id" : 15,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 1,
+        "small_break_duration" : "PT0S",
+        "large_break_duration" : "PT0S",
+        "small_break_threshold" : "PT0S",
+        "large_break_threshold" : "PT0S"
+      },
+      "tuesday" : {
+        "id" : 16,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 2,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "wednesday" : {
+        "id" : 17,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 3,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "thursday" : {
+        "id" : 18,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 4,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "friday" : {
+        "id" : 19,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 5,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "saturday" : {
+        "id" : 20,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 6,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "sunday" : {
+        "id" : 21,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 7,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      }
+    } ],
+    "absence_periods" : [ ],
+    "absence_types" : [ ],
+    "public_holidays" : [ ],
+    "secondary_shift_group_shifts" : [ ],
+    "shift_requests" : [ {
+      "id" : -32365535,
+      "shift_id" : 100164959,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "is_wanted" : true,
+      "reason" : ""
+    } ],
+    "locations" : [ {
+      "id" : 88,
+      "description" : "Augsburg",
+      "country_code" : "de",
+      "address" : "",
+      "state_code" : "by"
+    } ],
+    "flexitime_balances" : [ ]
+  },
+  "past_shift_plans" : [
+    {
+    "id" : 938,
+    "customer_id" : 43,
+    "shift_group_id" : 206,
+    "planning_period" : {
+      "start_date" : "2022-06-13",
+      "end_date" : "2022-07-09"
+    },
+    "shifts" : [ {
+      "id" : 104698,
+      "start_date_time" : "2022-06-13T06:00:00Z",
+      "end_date_time" : "2022-06-13T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104699,
+      "start_date_time" : "2022-06-13T06:00:00Z",
+      "end_date_time" : "2022-06-13T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104700,
+      "start_date_time" : "2022-06-14T06:00:00Z",
+      "end_date_time" : "2022-06-14T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104701,
+      "start_date_time" : "2022-06-14T06:00:00Z",
+      "end_date_time" : "2022-06-14T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104702,
+      "start_date_time" : "2022-06-15T06:00:00Z",
+      "end_date_time" : "2022-06-15T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104703,
+      "start_date_time" : "2022-06-15T06:00:00Z",
+      "end_date_time" : "2022-06-15T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104704,
+      "start_date_time" : "2022-06-16T06:00:00Z",
+      "end_date_time" : "2022-06-16T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104705,
+      "start_date_time" : "2022-06-16T06:00:00Z",
+      "end_date_time" : "2022-06-16T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104706,
+      "start_date_time" : "2022-06-17T06:00:00Z",
+      "end_date_time" : "2022-06-17T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104707,
+      "start_date_time" : "2022-06-17T06:00:00Z",
+      "end_date_time" : "2022-06-17T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104708,
+      "start_date_time" : "2022-06-18T06:00:00Z",
+      "end_date_time" : "2022-06-18T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 104709,
+      "start_date_time" : "2022-06-18T06:00:00Z",
+      "end_date_time" : "2022-06-18T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 104710,
+      "start_date_time" : "2022-06-19T06:00:00Z",
+      "end_date_time" : "2022-06-19T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 104711,
+      "start_date_time" : "2022-06-19T06:00:00Z",
+      "end_date_time" : "2022-06-19T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 104712,
+      "start_date_time" : "2022-06-20T06:00:00Z",
+      "end_date_time" : "2022-06-20T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104713,
+      "start_date_time" : "2022-06-20T06:00:00Z",
+      "end_date_time" : "2022-06-20T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104714,
+      "start_date_time" : "2022-06-21T06:00:00Z",
+      "end_date_time" : "2022-06-21T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104715,
+      "start_date_time" : "2022-06-21T06:00:00Z",
+      "end_date_time" : "2022-06-21T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104716,
+      "start_date_time" : "2022-06-22T06:00:00Z",
+      "end_date_time" : "2022-06-22T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104717,
+      "start_date_time" : "2022-06-22T06:00:00Z",
+      "end_date_time" : "2022-06-22T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104718,
+      "start_date_time" : "2022-06-23T06:00:00Z",
+      "end_date_time" : "2022-06-23T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104719,
+      "start_date_time" : "2022-06-23T06:00:00Z",
+      "end_date_time" : "2022-06-23T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104720,
+      "start_date_time" : "2022-06-24T06:00:00Z",
+      "end_date_time" : "2022-06-24T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104721,
+      "start_date_time" : "2022-06-24T06:00:00Z",
+      "end_date_time" : "2022-06-24T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104722,
+      "start_date_time" : "2022-06-25T06:00:00Z",
+      "end_date_time" : "2022-06-25T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 104723,
+      "start_date_time" : "2022-06-25T06:00:00Z",
+      "end_date_time" : "2022-06-25T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 104724,
+      "start_date_time" : "2022-06-26T06:00:00Z",
+      "end_date_time" : "2022-06-26T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 104725,
+      "start_date_time" : "2022-06-26T06:00:00Z",
+      "end_date_time" : "2022-06-26T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 104726,
+      "start_date_time" : "2022-06-27T06:00:00Z",
+      "end_date_time" : "2022-06-27T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104727,
+      "start_date_time" : "2022-06-27T06:00:00Z",
+      "end_date_time" : "2022-06-27T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104728,
+      "start_date_time" : "2022-06-28T06:00:00Z",
+      "end_date_time" : "2022-06-28T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104729,
+      "start_date_time" : "2022-06-28T06:00:00Z",
+      "end_date_time" : "2022-06-28T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104730,
+      "start_date_time" : "2022-06-29T06:00:00Z",
+      "end_date_time" : "2022-06-29T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104731,
+      "start_date_time" : "2022-06-29T06:00:00Z",
+      "end_date_time" : "2022-06-29T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104732,
+      "start_date_time" : "2022-06-30T06:00:00Z",
+      "end_date_time" : "2022-06-30T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104733,
+      "start_date_time" : "2022-06-30T06:00:00Z",
+      "end_date_time" : "2022-06-30T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104734,
+      "start_date_time" : "2022-07-01T06:00:00Z",
+      "end_date_time" : "2022-07-01T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104735,
+      "start_date_time" : "2022-07-01T06:00:00Z",
+      "end_date_time" : "2022-07-01T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104736,
+      "start_date_time" : "2022-07-02T06:00:00Z",
+      "end_date_time" : "2022-07-02T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 104737,
+      "start_date_time" : "2022-07-02T06:00:00Z",
+      "end_date_time" : "2022-07-02T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 104738,
+      "start_date_time" : "2022-07-03T06:00:00Z",
+      "end_date_time" : "2022-07-03T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 104739,
+      "start_date_time" : "2022-07-03T06:00:00Z",
+      "end_date_time" : "2022-07-03T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 104740,
+      "start_date_time" : "2022-07-04T06:00:00Z",
+      "end_date_time" : "2022-07-04T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104741,
+      "start_date_time" : "2022-07-04T06:00:00Z",
+      "end_date_time" : "2022-07-04T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104742,
+      "start_date_time" : "2022-07-05T06:00:00Z",
+      "end_date_time" : "2022-07-05T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104743,
+      "start_date_time" : "2022-07-05T06:00:00Z",
+      "end_date_time" : "2022-07-05T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104744,
+      "start_date_time" : "2022-07-06T06:00:00Z",
+      "end_date_time" : "2022-07-06T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104745,
+      "start_date_time" : "2022-07-06T06:00:00Z",
+      "end_date_time" : "2022-07-06T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104746,
+      "start_date_time" : "2022-07-07T06:00:00Z",
+      "end_date_time" : "2022-07-07T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104747,
+      "start_date_time" : "2022-07-07T06:00:00Z",
+      "end_date_time" : "2022-07-07T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104748,
+      "start_date_time" : "2022-07-08T06:00:00Z",
+      "end_date_time" : "2022-07-08T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 104749,
+      "start_date_time" : "2022-07-08T06:00:00Z",
+      "end_date_time" : "2022-07-08T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 104750,
+      "start_date_time" : "2022-07-09T06:00:00Z",
+      "end_date_time" : "2022-07-09T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 104751,
+      "start_date_time" : "2022-07-09T06:00:00Z",
+      "end_date_time" : "2022-07-09T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    } ],
+    "shift_assignments" : [ {
+      "shift_id" : 104698,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104699,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104700,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104702,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104704,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104706,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104708,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104710,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104712,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104714,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104716,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104718,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104720,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104724,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104726,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104727,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104728,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104729,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104730,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104731,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104732,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104733,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104734,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104735,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104736,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104738,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104740,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104741,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104742,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104743,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104744,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104745,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104746,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104747,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104748,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104749,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104750,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 104751,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    } ],
+    "workplace_priorities" : [ ],
+    "blocked_times" : [ ],
+    "customer" : {
+      "id" : 43,
+      "name" : "APConfig",
+      "zone_id" : "Europe/Berlin",
+      "country_code" : "DE"
+    },
+    "employees" : [ {
+      "uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "first_name" : "Wp",
+      "last_name" : "WP1",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ ],
+      "timed_properties" : [ {
+        "weekly_hours" : 50.0,
+        "weekly_days" : 7,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 731,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 0,
+      "qualifications" : [ {
+        "id" : 407,
+        "name" : "Wishes",
+        "activated_at" : "2024-01-31"
+      } ],
+      "shift_group_rotations" : [ ]
+    }, {
+      "uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "first_name" : "Admin",
+      "last_name" : "Planerio",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ 124 ],
+      "timed_properties" : [ {
+        "weekly_hours" : 40.0,
+        "weekly_days" : 5,
+        "valid_from" : "2024-08-01T00:00:00+02:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      }, {
+        "weekly_hours" : 40.0,
+        "weekly_days" : 5,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 566,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 6,
+      "qualifications" : [ ],
+      "shift_group_rotations" : [ ]
+    }, {
+      "uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "first_name" : "Nina",
+      "last_name" : "Gutherz",
+      "primary_shift_group_id" : 124,
+      "secondary_shift_group_ids" : [ 256, 387, 263, 203, 204, 205, 206, 207, 208, 209, 211, 214, 215, 216, 280, 217, 218, 220, 157, 287, 224, 161, 225, 226, 230, 231, 233, 362, 172, 237, 238, 177, 241, 309, 251, 124, 252, 444, 125, 381 ],
+      "timed_properties" : [ {
+        "weekly_hours" : 0.0,
+        "weekly_days" : 4,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      }, {
+        "weekly_hours" : 10.0,
+        "weekly_days" : 4,
+        "valid_from" : "2023-11-30T00:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 115
+      } ],
+      "availability_recurring_weeks" : 2,
+      "is_automatically_planned" : true,
+      "legacy_id" : 569,
+      "max_day_shifts" : 8,
+      "max_night_shifts" : 8,
+      "early_shift_chain" : 8,
+      "late_shift_chain" : 8,
+      "night_shift_chain" : 8,
+      "timetrack_profile_id" : 6,
+      "qualifications" : [ {
+        "id" : 290,
+        "name" : "Frühschicht"
+      }, {
+        "id" : 291,
+        "name" : "Spätschicht"
+      }, {
+        "id" : 292,
+        "name" : "Mittagscheck"
+      }, {
+        "id" : 317,
+        "name" : "TestNoQuali"
+      }, {
+        "id" : 318,
+        "name" : "NoEmployeeQualif"
+      }, {
+        "id" : 319,
+        "name" : "VirtualNonOverlap"
+      }, {
+        "id" : 320,
+        "name" : "VirtualOverlap"
+      }, {
+        "id" : 321,
+        "name" : "Longer18h"
+      }, {
+        "id" : 322,
+        "name" : "Less15min"
+      }, {
+        "id" : 323,
+        "name" : "Parallelpreplanned"
+      }, {
+        "id" : 326,
+        "name" : "PreplannedNotHighestPrio"
+      }, {
+        "id" : 330,
+        "name" : "5Stunden"
+      }, {
+        "id" : 331,
+        "name" : "OnlyQualiMa1"
+      }, {
+        "id" : 332,
+        "name" : "PreplannedMa3"
+      }, {
+        "id" : 335,
+        "name" : "AlsoPreplannedParallel"
+      }, {
+        "id" : 354,
+        "name" : "TwoShiftGroupsNoQuali"
+      }, {
+        "id" : 383,
+        "name" : "SpätNCID"
+      }, {
+        "id" : 409,
+        "name" : "Morning"
+      }, {
+        "id" : 479,
+        "name" : "QCare1"
+      }, {
+        "id" : 619,
+        "name" : "Frühschicht"
+      } ],
+      "shift_group_rotations" : [ {
+        "shift_group_id" : 124,
+        "start_date" : "2025-08-04",
+        "id" : 27
+      } ]
+    }, {
+      "uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "first_name" : "Wp",
+      "last_name" : "Wp2",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ ],
+      "timed_properties" : [ {
+        "weekly_hours" : 50.0,
+        "weekly_days" : 7,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 732,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 0,
+      "qualifications" : [ {
+        "id" : 407,
+        "name" : "Wishes"
+      } ],
+      "shift_group_rotations" : [ ]
+    } ],
+    "shift_groups" : [ {
+      "id" : 206,
+      "name" : "WishesPriotities"
+    }, {
+      "id" : 124,
+      "name" : "APTest"
+    }, {
+      "id" : 256,
+      "name" : "GLZ"
+    }, {
+      "id" : 387,
+      "name" : "TestWPPage"
+    }, {
+      "id" : 263,
+      "name" : "CIW"
+    }, {
+      "id" : 203,
+      "name" : "Demo-Schichtgruppe"
+    }, {
+      "id" : 204,
+      "name" : "SCOW"
+    }, {
+      "id" : 205,
+      "name" : "SenseCheckWorkload"
+    }, {
+      "id" : 207,
+      "name" : "NCIDTwoRealShifts"
+    }, {
+      "id" : 208,
+      "name" : "AvoidHalfDays"
+    }, {
+      "id" : 209,
+      "name" : "NewDailyHours"
+    }, {
+      "id" : 211,
+      "name" : "RBUnitTag"
+    }, {
+      "id" : 214,
+      "name" : "MinimizeJumps"
+    }, {
+      "id" : 215,
+      "name" : "PreferredLocation"
+    }, {
+      "id" : 216,
+      "name" : "SecShiftGroupTest"
+    }, {
+      "id" : 280,
+      "name" : "EqualWorkplaceDistr"
+    }, {
+      "id" : 217,
+      "name" : "MinCommuteWeeks"
+    }, {
+      "id" : 218,
+      "name" : "PauseTimes"
+    }, {
+      "id" : 220,
+      "name" : "WishedVirtual"
+    }, {
+      "id" : 157,
+      "name" : "Pflege"
+    }, {
+      "id" : 287,
+      "name" : "PublicHoliday"
+    }, {
+      "id" : 224,
+      "name" : "SequentialPlanning"
+    }, {
+      "id" : 161,
+      "name" : "UnitTagMaxShiftsPerWeeklyHours"
+    }, {
+      "id" : 225,
+      "name" : "KKHDienstplan"
+    }, {
+      "id" : 226,
+      "name" : "KKHFunktionsplan"
+    }, {
+      "id" : 230,
+      "name" : "FuntionalitiesMultiplePlanningPeriods"
+    }, {
+      "id" : 231,
+      "name" : "MinWorkplacesPerWeek"
+    }, {
+      "id" : 233,
+      "name" : "MCID"
+    }, {
+      "id" : 362,
+      "name" : "BeispielSGDemo"
+    }, {
+      "id" : 172,
+      "name" : "TestSTDoutFile"
+    }, {
+      "id" : 237,
+      "name" : "SCIW"
+    }, {
+      "id" : 238,
+      "name" : "Care"
+    }, {
+      "id" : 177,
+      "name" : "MWSBW"
+    }, {
+      "id" : 241,
+      "name" : "VirtualOverlapCompensation"
+    }, {
+      "id" : 309,
+      "name" : "RestTimes"
+    }, {
+      "id" : 251,
+      "name" : "noSingleSun"
+    }, {
+      "id" : 252,
+      "name" : "MAXTagVirtShifts"
+    }, {
+      "id" : 444,
+      "name" : "TestShiftGroup Rules"
+    }, {
+      "id" : 125,
+      "name" : "APTest2"
+    }, {
+      "id" : 381,
+      "name" : "TestKafkaIntegration"
+    } ],
+    "workplaces" : [ {
+      "id" : 426,
+      "name" : "HighPrio",
+      "location_id" : 88,
+      "ignore_break" : false
+    }, {
+      "id" : 427,
+      "name" : "VeryHighPrio",
+      "location_id" : 88,
+      "ignore_break" : false
+    }, {
+      "id" : 430,
+      "name" : "LowPrioWeekend",
+      "location_id" : 88,
+      "ignore_break" : false
+    }, {
+      "id" : 429,
+      "name" : "VeryLowWeekend",
+      "location_id" : 88,
+      "ignore_break" : false
+    } ],
+    "employee_locations" : [ {
+      "location_id" : 88,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 47,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 200,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 47,
+      "employee_uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "preference_degree" : 2
+    } ],
+    "timetrack_profiles" : [ {
+      "id" : 6,
+      "is_alternative_break_deduction" : false,
+      "monday" : {
+        "id" : 15,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 1,
+        "small_break_duration" : "PT0S",
+        "large_break_duration" : "PT0S",
+        "small_break_threshold" : "PT0S",
+        "large_break_threshold" : "PT0S"
+      },
+      "tuesday" : {
+        "id" : 16,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 2,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "wednesday" : {
+        "id" : 17,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 3,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "thursday" : {
+        "id" : 18,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 4,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "friday" : {
+        "id" : 19,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 5,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "saturday" : {
+        "id" : 20,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 6,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "sunday" : {
+        "id" : 21,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 7,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      }
+    } ],
+    "absence_periods" : [ {
+      "uuid" : "90de96a2-f1e3-487e-9e1b-24e7d4c92acc",
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "start_date_time" : "2022-06-14T06:00:00+02:00",
+      "end_date_time" : "2022-06-14T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "db479ff9-0fb7-497d-b955-6654bb4baa14",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-14"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "da79a35c-6825-489d-bb88-c0271cb21ee0",
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "start_date_time" : "2022-06-15T06:00:00+02:00",
+      "end_date_time" : "2022-06-15T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "7efa4092-2525-4b43-abf6-7c0ea541f8b8",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-15"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "37cee499-7ed4-40ec-943c-0945282c1566",
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "start_date_time" : "2022-06-16T06:00:00+02:00",
+      "end_date_time" : "2022-06-16T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "5e827a1b-216e-4abe-b41d-e18b1617c076",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-16"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "80ce9a14-f28b-4383-8721-d00cf6b4dd66",
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "start_date_time" : "2022-06-17T06:00:00+02:00",
+      "end_date_time" : "2022-06-17T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "f9483e3c-9de6-4426-9f99-594eae820648",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-17"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "569a21f5-cb44-49a3-b814-82d84fc30425",
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "start_date_time" : "2022-06-20T06:00:00+02:00",
+      "end_date_time" : "2022-06-20T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "f8dcd85c-4e1f-4ee4-9368-9657c7cd4030",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-20"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "c7803708-cc0b-4966-8150-01d5b343eec0",
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "start_date_time" : "2022-06-21T06:00:00+02:00",
+      "end_date_time" : "2022-06-21T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "732b1022-8c0a-4cc2-8667-eccf431b50b5",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-21"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "a763af0f-fd91-483f-b68e-95e286076d72",
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "start_date_time" : "2022-06-22T06:00:00+02:00",
+      "end_date_time" : "2022-06-22T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "d91ff826-a547-480e-a53e-f50469f9b93e",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-22"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "5a73f850-6be8-4487-9908-69185ea24928",
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "start_date_time" : "2022-06-23T06:00:00+02:00",
+      "end_date_time" : "2022-06-23T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "70cf4cae-e60f-4a9f-905c-d312519c0f12",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-23"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "38a36b14-e221-452d-b22a-11895af12cab",
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "start_date_time" : "2022-06-24T06:00:00+02:00",
+      "end_date_time" : "2022-06-24T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "bd3e1308-7d67-46ff-9caf-ca6f0a050345",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-24"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    }, {
+      "uuid" : "9ccb1cdb-5eac-4e8a-94e4-bbd5f9c292ff",
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "start_date_time" : "2022-06-25T06:00:00+02:00",
+      "end_date_time" : "2022-06-25T20:45:00+02:00",
+      "category_type_name" : "ABSENCE",
+      "request_status" : "ACCEPTED",
+      "absence_working_days" : [ {
+        "uuid" : "9ae59370-48e9-42bd-a752-0ebcbedc0716",
+        "cost_in_days" : 1.0,
+        "cost_in_hours" : 0.0,
+        "is_holiday" : false,
+        "is_weekend" : false,
+        "holiday_name" : "",
+        "day" : "2022-06-25"
+      } ],
+      "counted_hourly" : true,
+      "type_id" : "7f862f22-d809-4601-a036-5c1c4649e9d5"
+    } ],
+    "absence_types" : [ {
+      "uuid" : "7f862f22-d809-4601-a036-5c1c4649e9d5",
+      "title" : "PRIORITY_WORK"
+    } ],
+    "public_holidays" : [ {
+      "date" : "2022-06-16",
+      "name" : "Fronleichnam",
+      "start" : "2022-06-15T22:00:00Z",
+      "end" : "2022-06-16T22:00:00Z",
+      "rule" : "easter 60",
+      "type" : "public"
+    } ],
+    "secondary_shift_group_shifts" : [ ],
+    "shift_requests" : [ ],
+    "locations" : [ {
+      "id" : 88,
+      "description" : "Augsburg",
+      "country_code" : "de",
+      "address" : "",
+      "state_code" : "by"
+    } ],
+    "flexitime_balances" : [ ]
+  }, {
+    "id" : 1901,
+    "customer_id" : 43,
+    "shift_group_id" : 206,
+    "planning_period" : {
+      "start_date" : "2022-07-10",
+      "end_date" : "2022-08-07"
+    },
+    "shifts" : [ {
+      "id" : 202410,
+      "start_date_time" : "2022-07-10T06:00:00Z",
+      "end_date_time" : "2022-07-10T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 202411,
+      "start_date_time" : "2022-07-10T06:00:00Z",
+      "end_date_time" : "2022-07-10T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202412,
+      "start_date_time" : "2022-07-11T06:00:00Z",
+      "end_date_time" : "2022-07-11T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202413,
+      "start_date_time" : "2022-07-11T06:00:00Z",
+      "end_date_time" : "2022-07-11T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202414,
+      "start_date_time" : "2022-07-12T06:00:00Z",
+      "end_date_time" : "2022-07-12T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202415,
+      "start_date_time" : "2022-07-12T06:00:00Z",
+      "end_date_time" : "2022-07-12T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202416,
+      "start_date_time" : "2022-07-13T06:00:00Z",
+      "end_date_time" : "2022-07-13T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202417,
+      "start_date_time" : "2022-07-13T06:00:00Z",
+      "end_date_time" : "2022-07-13T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202418,
+      "start_date_time" : "2022-07-14T06:00:00Z",
+      "end_date_time" : "2022-07-14T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202419,
+      "start_date_time" : "2022-07-14T06:00:00Z",
+      "end_date_time" : "2022-07-14T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202420,
+      "start_date_time" : "2022-07-15T06:00:00Z",
+      "end_date_time" : "2022-07-15T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202421,
+      "start_date_time" : "2022-07-15T06:00:00Z",
+      "end_date_time" : "2022-07-15T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202422,
+      "start_date_time" : "2022-07-16T06:00:00Z",
+      "end_date_time" : "2022-07-16T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202423,
+      "start_date_time" : "2022-07-16T06:00:00Z",
+      "end_date_time" : "2022-07-16T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 202424,
+      "start_date_time" : "2022-07-17T06:00:00Z",
+      "end_date_time" : "2022-07-17T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 202425,
+      "start_date_time" : "2022-07-17T06:00:00Z",
+      "end_date_time" : "2022-07-17T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202426,
+      "start_date_time" : "2022-07-18T06:00:00Z",
+      "end_date_time" : "2022-07-18T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202427,
+      "start_date_time" : "2022-07-18T06:00:00Z",
+      "end_date_time" : "2022-07-18T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202428,
+      "start_date_time" : "2022-07-19T06:00:00Z",
+      "end_date_time" : "2022-07-19T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202429,
+      "start_date_time" : "2022-07-19T06:00:00Z",
+      "end_date_time" : "2022-07-19T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202430,
+      "start_date_time" : "2022-07-20T06:00:00Z",
+      "end_date_time" : "2022-07-20T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202431,
+      "start_date_time" : "2022-07-20T06:00:00Z",
+      "end_date_time" : "2022-07-20T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202432,
+      "start_date_time" : "2022-07-21T06:00:00Z",
+      "end_date_time" : "2022-07-21T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202433,
+      "start_date_time" : "2022-07-21T06:00:00Z",
+      "end_date_time" : "2022-07-21T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202434,
+      "start_date_time" : "2022-07-22T06:00:00Z",
+      "end_date_time" : "2022-07-22T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202435,
+      "start_date_time" : "2022-07-22T06:00:00Z",
+      "end_date_time" : "2022-07-22T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202436,
+      "start_date_time" : "2022-07-23T06:00:00Z",
+      "end_date_time" : "2022-07-23T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202437,
+      "start_date_time" : "2022-07-23T06:00:00Z",
+      "end_date_time" : "2022-07-23T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 202438,
+      "start_date_time" : "2022-07-24T06:00:00Z",
+      "end_date_time" : "2022-07-24T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 202439,
+      "start_date_time" : "2022-07-24T06:00:00Z",
+      "end_date_time" : "2022-07-24T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202440,
+      "start_date_time" : "2022-07-25T06:00:00Z",
+      "end_date_time" : "2022-07-25T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202441,
+      "start_date_time" : "2022-07-25T06:00:00Z",
+      "end_date_time" : "2022-07-25T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202442,
+      "start_date_time" : "2022-07-26T06:00:00Z",
+      "end_date_time" : "2022-07-26T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202443,
+      "start_date_time" : "2022-07-26T06:00:00Z",
+      "end_date_time" : "2022-07-26T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202444,
+      "start_date_time" : "2022-07-27T06:00:00Z",
+      "end_date_time" : "2022-07-27T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202445,
+      "start_date_time" : "2022-07-27T06:00:00Z",
+      "end_date_time" : "2022-07-27T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202446,
+      "start_date_time" : "2022-07-28T06:00:00Z",
+      "end_date_time" : "2022-07-28T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202447,
+      "start_date_time" : "2022-07-28T06:00:00Z",
+      "end_date_time" : "2022-07-28T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202448,
+      "start_date_time" : "2022-07-29T06:00:00Z",
+      "end_date_time" : "2022-07-29T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202449,
+      "start_date_time" : "2022-07-29T06:00:00Z",
+      "end_date_time" : "2022-07-29T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202450,
+      "start_date_time" : "2022-07-30T06:00:00Z",
+      "end_date_time" : "2022-07-30T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202451,
+      "start_date_time" : "2022-07-30T06:00:00Z",
+      "end_date_time" : "2022-07-30T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 202452,
+      "start_date_time" : "2022-07-31T06:00:00Z",
+      "end_date_time" : "2022-07-31T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 202453,
+      "start_date_time" : "2022-07-31T06:00:00Z",
+      "end_date_time" : "2022-07-31T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202454,
+      "start_date_time" : "2022-08-01T06:00:00Z",
+      "end_date_time" : "2022-08-01T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202455,
+      "start_date_time" : "2022-08-01T06:00:00Z",
+      "end_date_time" : "2022-08-01T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202456,
+      "start_date_time" : "2022-08-02T06:00:00Z",
+      "end_date_time" : "2022-08-02T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202457,
+      "start_date_time" : "2022-08-02T06:00:00Z",
+      "end_date_time" : "2022-08-02T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202458,
+      "start_date_time" : "2022-08-03T06:00:00Z",
+      "end_date_time" : "2022-08-03T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202459,
+      "start_date_time" : "2022-08-03T06:00:00Z",
+      "end_date_time" : "2022-08-03T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202460,
+      "start_date_time" : "2022-08-04T06:00:00Z",
+      "end_date_time" : "2022-08-04T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202461,
+      "start_date_time" : "2022-08-04T06:00:00Z",
+      "end_date_time" : "2022-08-04T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202462,
+      "start_date_time" : "2022-08-05T06:00:00Z",
+      "end_date_time" : "2022-08-05T15:00:00Z",
+      "workplace_id" : 426,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 937,
+      "preference_degree" : 2
+    }, {
+      "id" : 202463,
+      "start_date_time" : "2022-08-05T06:00:00Z",
+      "end_date_time" : "2022-08-05T15:00:00Z",
+      "workplace_id" : 427,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 938,
+      "preference_degree" : 1
+    }, {
+      "id" : 202464,
+      "start_date_time" : "2022-08-06T06:00:00Z",
+      "end_date_time" : "2022-08-06T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202465,
+      "start_date_time" : "2022-08-06T06:00:00Z",
+      "end_date_time" : "2022-08-06T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    }, {
+      "id" : 202466,
+      "start_date_time" : "2022-08-07T06:00:00Z",
+      "end_date_time" : "2022-08-07T15:00:00Z",
+      "workplace_id" : 429,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 939,
+      "preference_degree" : 5
+    }, {
+      "id" : 202467,
+      "start_date_time" : "2022-08-07T06:00:00Z",
+      "end_date_time" : "2022-08-07T15:00:00Z",
+      "workplace_id" : 430,
+      "qualification_ids" : [ 407 ],
+      "is_virtual" : false,
+      "availability_exceptions" : [ ],
+      "shift_card_id" : 940,
+      "preference_degree" : 4
+    } ],
+    "shift_assignments" : [ {
+      "shift_id" : 202412,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202415,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202417,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202419,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202421,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202423,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202427,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202429,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202431,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202433,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202435,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202437,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202441,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202443,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202445,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202447,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202449,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202451,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202455,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202457,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202459,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202461,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202463,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    }, {
+      "shift_id" : 202465,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    },
+    {
+      "shift_id" : 104709,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "source" : "UNKNOWN"
+    },
+      {
+        "shift_id": 104711,
+        "employee_uuid": "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+        "source": "UNKNOWN"
+      },
+      {
+        "shift_id": 104723,
+        "employee_uuid": "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+        "source": "UNKNOWN"
+      },
+      {
+        "shift_id": 104725,
+        "employee_uuid": "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+        "source": "UNKNOWN"
+      },
+      {
+        "shift_id": 104737,
+        "employee_uuid": "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+        "source": "UNKNOWN"
+      },
+      {
+        "shift_id": 104739,
+        "employee_uuid": "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+        "source": "UNKNOWN"
+      },
+      {
+        "shift_id": 104751,
+        "employee_uuid": "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+        "source": "UNKNOWN"
+      }
+    ],
+
+
+
+
+
+    "workplace_priorities" : [ ],
+    "blocked_times" : [ ],
+    "customer" : {
+      "id" : 43,
+      "name" : "APConfig",
+      "zone_id" : "Europe/Berlin",
+      "country_code" : "DE"
+    },
+    "employees" : [ {
+      "uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "first_name" : "Wp",
+      "last_name" : "WP1",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ ],
+      "timed_properties" : [ {
+        "weekly_hours" : 50.0,
+        "weekly_days" : 7,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 731,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 0,
+      "qualifications" : [ {
+        "id" : 407,
+        "name" : "Wishes",
+        "activated_at" : "2024-01-31"
+      } ],
+      "shift_group_rotations" : [ ]
+    }, {
+      "uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "first_name" : "Admin",
+      "last_name" : "Planerio",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ 124 ],
+      "timed_properties" : [ {
+        "weekly_hours" : 40.0,
+        "weekly_days" : 5,
+        "valid_from" : "2024-08-01T00:00:00+02:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      }, {
+        "weekly_hours" : 40.0,
+        "weekly_days" : 5,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 566,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 6,
+      "qualifications" : [ ],
+      "shift_group_rotations" : [ ]
+    }, {
+      "uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "first_name" : "Nina",
+      "last_name" : "Gutherz",
+      "primary_shift_group_id" : 124,
+      "secondary_shift_group_ids" : [ 256, 387, 263, 203, 204, 205, 206, 207, 208, 209, 211, 214, 215, 216, 280, 217, 218, 220, 157, 287, 224, 161, 225, 226, 230, 231, 233, 362, 172, 237, 238, 177, 241, 309, 251, 124, 252, 444, 125, 381 ],
+      "timed_properties" : [ {
+        "weekly_hours" : 0.0,
+        "weekly_days" : 4,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      }, {
+        "weekly_hours" : 10.0,
+        "weekly_days" : 4,
+        "valid_from" : "2023-11-30T00:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 115
+      } ],
+      "availability_recurring_weeks" : 2,
+      "is_automatically_planned" : true,
+      "legacy_id" : 569,
+      "max_day_shifts" : 8,
+      "max_night_shifts" : 8,
+      "early_shift_chain" : 8,
+      "late_shift_chain" : 8,
+      "night_shift_chain" : 8,
+      "timetrack_profile_id" : 6,
+      "qualifications" : [ {
+        "id" : 290,
+        "name" : "Frühschicht"
+      }, {
+        "id" : 291,
+        "name" : "Spätschicht"
+      }, {
+        "id" : 292,
+        "name" : "Mittagscheck"
+      }, {
+        "id" : 317,
+        "name" : "TestNoQuali"
+      }, {
+        "id" : 318,
+        "name" : "NoEmployeeQualif"
+      }, {
+        "id" : 319,
+        "name" : "VirtualNonOverlap"
+      }, {
+        "id" : 320,
+        "name" : "VirtualOverlap"
+      }, {
+        "id" : 321,
+        "name" : "Longer18h"
+      }, {
+        "id" : 322,
+        "name" : "Less15min"
+      }, {
+        "id" : 323,
+        "name" : "Parallelpreplanned"
+      }, {
+        "id" : 326,
+        "name" : "PreplannedNotHighestPrio"
+      }, {
+        "id" : 330,
+        "name" : "5Stunden"
+      }, {
+        "id" : 331,
+        "name" : "OnlyQualiMa1"
+      }, {
+        "id" : 332,
+        "name" : "PreplannedMa3"
+      }, {
+        "id" : 335,
+        "name" : "AlsoPreplannedParallel"
+      }, {
+        "id" : 354,
+        "name" : "TwoShiftGroupsNoQuali"
+      }, {
+        "id" : 383,
+        "name" : "SpätNCID"
+      }, {
+        "id" : 409,
+        "name" : "Morning"
+      }, {
+        "id" : 479,
+        "name" : "QCare1"
+      }, {
+        "id" : 619,
+        "name" : "Frühschicht"
+      } ],
+      "shift_group_rotations" : [ {
+        "shift_group_id" : 124,
+        "start_date" : "2025-08-04",
+        "id" : 27
+      } ]
+    }, {
+      "uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "first_name" : "Wp",
+      "last_name" : "Wp2",
+      "primary_shift_group_id" : 206,
+      "secondary_shift_group_ids" : [ ],
+      "timed_properties" : [ {
+        "weekly_hours" : 50.0,
+        "weekly_days" : 7,
+        "valid_from" : "1970-01-01T01:00:00+01:00",
+        "max_weekly_hours" : 54.0,
+        "location_id" : 0
+      } ],
+      "availability_recurring_weeks" : 1,
+      "is_automatically_planned" : true,
+      "legacy_id" : 732,
+      "max_day_shifts" : 5,
+      "max_night_shifts" : 4,
+      "early_shift_chain" : 4,
+      "late_shift_chain" : 4,
+      "night_shift_chain" : 4,
+      "timetrack_profile_id" : 0,
+      "qualifications" : [ {
+        "id" : 407,
+        "name" : "Wishes"
+      } ],
+      "shift_group_rotations" : [ ]
+    } ],
+    "shift_groups" : [ {
+      "id" : 206,
+      "name" : "WishesPriotities"
+    }, {
+      "id" : 124,
+      "name" : "APTest"
+    }, {
+      "id" : 256,
+      "name" : "GLZ"
+    }, {
+      "id" : 387,
+      "name" : "TestWPPage"
+    }, {
+      "id" : 263,
+      "name" : "CIW"
+    }, {
+      "id" : 203,
+      "name" : "Demo-Schichtgruppe"
+    }, {
+      "id" : 204,
+      "name" : "SCOW"
+    }, {
+      "id" : 205,
+      "name" : "SenseCheckWorkload"
+    }, {
+      "id" : 207,
+      "name" : "NCIDTwoRealShifts"
+    }, {
+      "id" : 208,
+      "name" : "AvoidHalfDays"
+    }, {
+      "id" : 209,
+      "name" : "NewDailyHours"
+    }, {
+      "id" : 211,
+      "name" : "RBUnitTag"
+    }, {
+      "id" : 214,
+      "name" : "MinimizeJumps"
+    }, {
+      "id" : 215,
+      "name" : "PreferredLocation"
+    }, {
+      "id" : 216,
+      "name" : "SecShiftGroupTest"
+    }, {
+      "id" : 280,
+      "name" : "EqualWorkplaceDistr"
+    }, {
+      "id" : 217,
+      "name" : "MinCommuteWeeks"
+    }, {
+      "id" : 218,
+      "name" : "PauseTimes"
+    }, {
+      "id" : 220,
+      "name" : "WishedVirtual"
+    }, {
+      "id" : 157,
+      "name" : "Pflege"
+    }, {
+      "id" : 287,
+      "name" : "PublicHoliday"
+    }, {
+      "id" : 224,
+      "name" : "SequentialPlanning"
+    }, {
+      "id" : 161,
+      "name" : "UnitTagMaxShiftsPerWeeklyHours"
+    }, {
+      "id" : 225,
+      "name" : "KKHDienstplan"
+    }, {
+      "id" : 226,
+      "name" : "KKHFunktionsplan"
+    }, {
+      "id" : 230,
+      "name" : "FuntionalitiesMultiplePlanningPeriods"
+    }, {
+      "id" : 231,
+      "name" : "MinWorkplacesPerWeek"
+    }, {
+      "id" : 233,
+      "name" : "MCID"
+    }, {
+      "id" : 362,
+      "name" : "BeispielSGDemo"
+    }, {
+      "id" : 172,
+      "name" : "TestSTDoutFile"
+    }, {
+      "id" : 237,
+      "name" : "SCIW"
+    }, {
+      "id" : 238,
+      "name" : "Care"
+    }, {
+      "id" : 177,
+      "name" : "MWSBW"
+    }, {
+      "id" : 241,
+      "name" : "VirtualOverlapCompensation"
+    }, {
+      "id" : 309,
+      "name" : "RestTimes"
+    }, {
+      "id" : 251,
+      "name" : "noSingleSun"
+    }, {
+      "id" : 252,
+      "name" : "MAXTagVirtShifts"
+    }, {
+      "id" : 444,
+      "name" : "TestShiftGroup Rules"
+    }, {
+      "id" : 125,
+      "name" : "APTest2"
+    }, {
+      "id" : 381,
+      "name" : "TestKafkaIntegration"
+    } ],
+    "workplaces" : [ {
+      "id" : 430,
+      "name" : "LowPrioWeekend",
+      "location_id" : 88,
+      "ignore_break" : false
+    }, {
+      "id" : 429,
+      "name" : "VeryLowWeekend",
+      "location_id" : 88,
+      "ignore_break" : false
+    }, {
+      "id" : 427,
+      "name" : "VeryHighPrio",
+      "location_id" : 88,
+      "ignore_break" : false
+    }, {
+      "id" : 426,
+      "name" : "HighPrio",
+      "location_id" : 88,
+      "ignore_break" : false
+    } ],
+    "employee_locations" : [ {
+      "location_id" : 88,
+      "employee_uuid" : "41d45e7d-4d75-46d9-9312-f07d076411c4",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 47,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 200,
+      "employee_uuid" : "49a896d2-394a-42b9-826b-24820a904dcd",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 47,
+      "employee_uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "943e583d-ed30-49ce-93c3-a3841c2cacd1",
+      "preference_degree" : 2
+    }, {
+      "location_id" : 88,
+      "employee_uuid" : "c367b4d1-37fd-4701-b77d-1f0928100cf4",
+      "preference_degree" : 2
+    } ],
+    "timetrack_profiles" : [ {
+      "id" : 6,
+      "is_alternative_break_deduction" : false,
+      "monday" : {
+        "id" : 15,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 1,
+        "small_break_duration" : "PT0S",
+        "large_break_duration" : "PT0S",
+        "small_break_threshold" : "PT0S",
+        "large_break_threshold" : "PT0S"
+      },
+      "tuesday" : {
+        "id" : 16,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 2,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "wednesday" : {
+        "id" : 17,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 3,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "thursday" : {
+        "id" : 18,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 4,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "friday" : {
+        "id" : 19,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 5,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "saturday" : {
+        "id" : 20,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 6,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      },
+      "sunday" : {
+        "id" : 21,
+        "timetrack_profile_id" : 6,
+        "iso_week_day" : 7,
+        "small_break_duration" : "PT15M",
+        "large_break_duration" : "PT30M",
+        "small_break_threshold" : "PT4H",
+        "large_break_threshold" : "PT8H"
+      }
+    } ],
+    "absence_periods" : [ ],
+    "absence_types" : [ ],
+    "public_holidays" : [ ],
+    "secondary_shift_group_shifts" : [ ],
+    "shift_requests" : [ ],
+    "locations" : [ {
+      "id" : 88,
+      "description" : "Augsburg",
+      "country_code" : "de",
+      "address" : "",
+      "state_code" : "by"
+    } ],
+    "flexitime_balances" : [ ]
+  } ],
+  "planning_configuration" : {
+    "public_holidays_create_target_hours" : false
+  }
+}

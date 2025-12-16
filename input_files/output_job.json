@@ -1,0 +1,2874 @@
+{
+  "shift_plan": {
+    "customer": {
+      "id": 201,
+      "name": "City General Hospital – East Campus",
+      "zone_id": "Europe/Berlin"
+    },
+    "employees": [
+      {
+        "uuid": "E1001",
+        "name": "Nora",
+        "qualifications": [
+          {
+            "id": 1
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 40
+          }
+        ]
+      },
+      {
+        "uuid": "E1002",
+        "name": "Ben",
+        "qualifications": [
+          {
+            "id": 1
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 40
+          }
+        ]
+      },
+      {
+        "uuid": "E1003",
+        "name": "Clara",
+        "qualifications": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 32
+          }
+        ]
+      },
+      {
+        "uuid": "E1004",
+        "name": "Liam",
+        "qualifications": [
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 20
+          }
+        ]
+      },
+      {
+        "uuid": "E1005",
+        "name": "Olivia",
+        "qualifications": [
+          {
+            "id": 1
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 30
+          }
+        ]
+      },
+      {
+        "uuid": "E1006",
+        "name": "Felix",
+        "qualifications": [
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 38
+          }
+        ]
+      },
+      {
+        "uuid": "E1007",
+        "name": "Sofia",
+        "qualifications": [
+          {
+            "id": 1
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 24
+          }
+        ]
+      },
+      {
+        "uuid": "E1008",
+        "name": "Mateo",
+        "qualifications": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 40
+          }
+        ]
+      },
+      {
+        "uuid": "E1009",
+        "name": "Aria",
+        "qualifications": [
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 36
+          }
+        ]
+      },
+      {
+        "uuid": "E1010",
+        "name": "Jack",
+        "qualifications": [
+          {
+            "id": 1
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 28
+          }
+        ]
+      },
+      {
+        "uuid": "E1015",
+        "name": "DrFest",
+        "qualifications": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 40
+          }
+        ]
+      },
+      {
+        "uuid": "E1016",
+        "name": "Riley",
+        "qualifications": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 35
+          }
+        ]
+      },
+      {
+        "uuid": "E1017",
+        "name": "Avery",
+        "qualifications": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 32
+          }
+        ]
+      },
+      {
+        "uuid": "E1018",
+        "name": "Noah",
+        "qualifications": [
+          {
+            "id": 2
+          }
+        ],
+        "timed_properties": [
+          {
+            "weekly_hours": 34
+          }
+        ]
+      }
+    ],
+    "shifts": [
+      {
+        "id": 21001,
+        "workplace_id": 20,
+        "shift_card_id": "DAY",
+        "start_date_time": "2026-02-01T08:00:00+01:00",
+        "end_date_time": "2026-02-01T16:00:00+01:00",
+        "qualification_ids": [
+          1
+        ]
+      },
+      {
+        "id": 21002,
+        "workplace_id": 20,
+        "shift_card_id": "EVE",
+        "start_date_time": "2026-02-01T16:00:00+01:00",
+        "end_date_time": "2026-02-01T22:00:00+01:00",
+        "qualification_ids": [
+          2
+        ]
+      },
+      {
+        "id": 21003,
+        "workplace_id": 21,
+        "shift_card_id": "DAY",
+        "start_date_time": "2026-02-02T08:00:00+01:00",
+        "end_date_time": "2026-02-02T16:00:00+01:00",
+        "qualification_ids": [
+          1
+        ]
+      },
+      {
+        "id": 21004,
+        "workplace_id": 21,
+        "shift_card_id": "EVE",
+        "start_date_time": "2026-02-02T16:00:00+01:00",
+        "end_date_time": "2026-02-02T22:00:00+01:00",
+        "qualification_ids": [
+          2
+        ]
+      },
+      {
+        "id": 21005,
+        "workplace_id": 22,
+        "shift_card_id": "DAY",
+        "start_date_time": "2026-02-03T08:00:00+01:00",
+        "end_date_time": "2026-02-03T16:00:00+01:00",
+        "qualification_ids": [
+          1
+        ]
+      },
+      {
+        "id": 21006,
+        "workplace_id": 22,
+        "shift_card_id": "EVE",
+        "start_date_time": "2026-02-03T16:00:00+01:00",
+        "end_date_time": "2026-02-03T22:00:00+01:00",
+        "qualification_ids": [
+          2
+        ]
+      },
+      {
+        "id": 21007,
+        "workplace_id": 20,
+        "shift_card_id": "DAY",
+        "start_date_time": "2026-02-04T08:00:00+01:00",
+        "end_date_time": "2026-02-04T16:00:00+01:00",
+        "qualification_ids": [
+          1
+        ]
+      },
+      {
+        "id": 21008,
+        "workplace_id": 20,
+        "shift_card_id": "EVE",
+        "start_date_time": "2026-02-04T16:00:00+01:00",
+        "end_date_time": "2026-02-04T22:00:00+01:00",
+        "qualification_ids": [
+          2
+        ]
+      },
+      {
+        "id": 21009,
+        "workplace_id": 21,
+        "shift_card_id": "DAY",
+        "start_date_time": "2026-02-05T08:00:00+01:00",
+        "end_date_time": "2026-02-05T16:00:00+01:00",
+        "qualification_ids": [
+          1
+        ]
+      },
+      {
+        "id": 21010,
+        "workplace_id": 21,
+        "shift_card_id": "EVE",
+        "start_date_time": "2026-02-05T16:00:00+01:00",
+        "end_date_time": "2026-02-05T22:00:00+01:00",
+        "qualification_ids": [
+          2
+        ]
+      },
+      {
+        "id": 21011,
+        "workplace_id": 22,
+        "shift_card_id": "DAY",
+        "start_date_time": "2026-02-06T08:00:00+01:00",
+        "end_date_time": "2026-02-06T16:00:00+01:00",
+        "qualification_ids": [
+          1
+        ]
+      },
+      {
+        "id": 21012,
+        "workplace_id": 22,
+        "shift_card_id": "EVE",
+        "start_date_time": "2026-02-06T16:00:00+01:00",
+        "end_date_time": "2026-02-06T22:00:00+01:00",
+        "qualification_ids": [
+          2
+        ]
+      },
+      {
+        "id": 21013,
+        "workplace_id": 20,
+        "shift_card_id": "DAY",
+        "start_date_time": "2026-02-07T08:00:00+01:00",
+        "end_date_time": "2026-02-07T16:00:00+01:00",
+        "qualification_ids": [
+          1
+        ]
+      },
+      {
+        "id": 21014,
+        "workplace_id": 20,
+        "shift_card_id": "EVE",
+        "start_date_time": "2026-02-07T16:00:00+01:00",
+        "end_date_time": "2026-02-07T22:00:00+01:00",
+        "qualification_ids": [
+          2
+        ]
+      }
+    ],
+    "shift_assignments": [
+      {
+        "shift_id": 21001,
+        "employee_uuid": "E1001",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21002,
+        "employee_uuid": "E1006",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21003,
+        "employee_uuid": "E1001",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21004,
+        "employee_uuid": "E1006",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21005,
+        "employee_uuid": "E1001",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21006,
+        "employee_uuid": "E1006",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21007,
+        "employee_uuid": "E1001",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21008,
+        "employee_uuid": "E1006",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21009,
+        "employee_uuid": "E1015",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21010,
+        "employee_uuid": "E1006",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21011,
+        "employee_uuid": "E1002",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21012,
+        "employee_uuid": "E1006",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21013,
+        "employee_uuid": "E1001",
+        "source": "MODEL"
+      },
+      {
+        "shift_id": 21014,
+        "employee_uuid": "E1003",
+        "source": "MODEL"
+      }
+    ]
+  },
+  "past_shift_plans": [
+    {
+      "id": 8901,
+      "customer": {
+        "zone_id": "Europe/Berlin"
+      },
+      "shifts": [
+        {
+          "id": 89001,
+          "workplace_id": 20,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-12-24T08:00:00+01:00",
+          "end_date_time": "2025-12-24T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 89002,
+          "workplace_id": 20,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-12-24T16:00:00+01:00",
+          "end_date_time": "2025-12-24T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 89003,
+          "workplace_id": 21,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-12-25T08:00:00+01:00",
+          "end_date_time": "2025-12-25T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 89004,
+          "workplace_id": 21,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-12-25T16:00:00+01:00",
+          "end_date_time": "2025-12-25T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 89005,
+          "workplace_id": 22,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-12-26T08:00:00+01:00",
+          "end_date_time": "2025-12-26T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 89006,
+          "workplace_id": 22,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-12-26T16:00:00+01:00",
+          "end_date_time": "2025-12-26T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 89007,
+          "workplace_id": 20,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-12-27T08:00:00+01:00",
+          "end_date_time": "2025-12-27T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 89008,
+          "workplace_id": 20,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-12-27T16:00:00+01:00",
+          "end_date_time": "2025-12-27T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 89009,
+          "workplace_id": 21,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-12-28T08:00:00+01:00",
+          "end_date_time": "2025-12-28T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 89010,
+          "workplace_id": 21,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-12-28T16:00:00+01:00",
+          "end_date_time": "2025-12-28T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 89011,
+          "workplace_id": 22,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-12-29T08:00:00+01:00",
+          "end_date_time": "2025-12-29T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 89012,
+          "workplace_id": 22,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-12-29T16:00:00+01:00",
+          "end_date_time": "2025-12-29T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 89013,
+          "workplace_id": 20,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-12-30T08:00:00+01:00",
+          "end_date_time": "2025-12-30T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 89014,
+          "workplace_id": 20,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-12-30T16:00:00+01:00",
+          "end_date_time": "2025-12-30T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        }
+      ],
+      "shift_assignments": [
+        {
+          "shift_id": 89001,
+          "employee_uuid": "E1001"
+        },
+        {
+          "shift_id": 89002,
+          "employee_uuid": "E1015"
+        },
+        {
+          "shift_id": 89003,
+          "employee_uuid": "E1015"
+        },
+        {
+          "shift_id": 89004,
+          "employee_uuid": "E1015"
+        },
+        {
+          "shift_id": 89005,
+          "employee_uuid": "E1002"
+        },
+        {
+          "shift_id": 89006,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 89007,
+          "employee_uuid": "E1003"
+        },
+        {
+          "shift_id": 89008,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 89009,
+          "employee_uuid": "E1003"
+        },
+        {
+          "shift_id": 89010,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 89011,
+          "employee_uuid": "E1002"
+        },
+        {
+          "shift_id": 89012,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 89013,
+          "employee_uuid": "E1001"
+        },
+        {
+          "shift_id": 89014,
+          "employee_uuid": "E1006"
+        }
+      ],
+      "public_holidays": [
+        {
+          "date": "2025-12-25",
+          "name": "Christmas Day",
+          "start": "2025-12-25T00:00:00Z",
+          "end": "2025-12-25T23:59:59Z",
+          "rule": "fixed",
+          "type": "public"
+        },
+        {
+          "date": "2025-12-26",
+          "name": "Boxing Day",
+          "start": "2025-12-26T00:00:00Z",
+          "end": "2025-12-26T23:59:59Z",
+          "rule": "fixed",
+          "type": "public"
+        }
+      ]
+    },
+    {
+      "id": 8801,
+      "customer": {
+        "zone_id": "Europe/Berlin"
+      },
+      "shifts": [
+        {
+          "id": 88001,
+          "workplace_id": 20,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-09-10T08:00:00+02:00",
+          "end_date_time": "2025-09-10T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 88002,
+          "workplace_id": 20,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-09-10T16:00:00+02:00",
+          "end_date_time": "2025-09-10T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 88003,
+          "workplace_id": 21,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-09-11T08:00:00+02:00",
+          "end_date_time": "2025-09-11T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 88004,
+          "workplace_id": 21,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-09-11T16:00:00+02:00",
+          "end_date_time": "2025-09-11T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 88005,
+          "workplace_id": 22,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-09-12T08:00:00+02:00",
+          "end_date_time": "2025-09-12T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 88006,
+          "workplace_id": 22,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-09-12T16:00:00+02:00",
+          "end_date_time": "2025-09-12T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 88007,
+          "workplace_id": 20,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-09-13T08:00:00+02:00",
+          "end_date_time": "2025-09-13T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 88008,
+          "workplace_id": 20,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-09-13T16:00:00+02:00",
+          "end_date_time": "2025-09-13T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 88009,
+          "workplace_id": 21,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-09-14T08:00:00+02:00",
+          "end_date_time": "2025-09-14T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 88010,
+          "workplace_id": 21,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-09-14T16:00:00+02:00",
+          "end_date_time": "2025-09-14T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        }
+      ],
+      "shift_assignments": [
+        {
+          "shift_id": 88001,
+          "employee_uuid": "E1001"
+        },
+        {
+          "shift_id": 88002,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 88003,
+          "employee_uuid": "E1002"
+        },
+        {
+          "shift_id": 88004,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 88005,
+          "employee_uuid": "E1001"
+        },
+        {
+          "shift_id": 88006,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 88007,
+          "employee_uuid": "E1003"
+        },
+        {
+          "shift_id": 88008,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 88009,
+          "employee_uuid": "E1003"
+        },
+        {
+          "shift_id": 88010,
+          "employee_uuid": "E1006"
+        }
+      ]
+    },
+    {
+      "id": 8701,
+      "customer": {
+        "zone_id": "Europe/Berlin"
+      },
+      "shifts": [
+        {
+          "id": 87001,
+          "workplace_id": 21,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-05-01T08:00:00+02:00",
+          "end_date_time": "2025-05-01T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 87002,
+          "workplace_id": 21,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-05-01T16:00:00+02:00",
+          "end_date_time": "2025-05-01T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 87003,
+          "workplace_id": 20,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-05-02T08:00:00+02:00",
+          "end_date_time": "2025-05-02T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 87004,
+          "workplace_id": 20,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-05-02T16:00:00+02:00",
+          "end_date_time": "2025-05-02T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 87005,
+          "workplace_id": 22,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-05-03T08:00:00+02:00",
+          "end_date_time": "2025-05-03T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 87006,
+          "workplace_id": 22,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-05-03T16:00:00+02:00",
+          "end_date_time": "2025-05-03T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 87007,
+          "workplace_id": 21,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-05-04T08:00:00+02:00",
+          "end_date_time": "2025-05-04T16:00:00+02:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 87008,
+          "workplace_id": 21,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-05-04T16:00:00+02:00",
+          "end_date_time": "2025-05-04T22:00:00+02:00",
+          "qualification_ids": [
+            2
+          ]
+        }
+      ],
+      "shift_assignments": [
+        {
+          "shift_id": 87001,
+          "employee_uuid": "E1015"
+        },
+        {
+          "shift_id": 87002,
+          "employee_uuid": "E1015"
+        },
+        {
+          "shift_id": 87003,
+          "employee_uuid": "E1001"
+        },
+        {
+          "shift_id": 87004,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 87005,
+          "employee_uuid": "E1002"
+        },
+        {
+          "shift_id": 87006,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 87007,
+          "employee_uuid": "E1003"
+        },
+        {
+          "shift_id": 87008,
+          "employee_uuid": "E1006"
+        }
+      ],
+      "public_holidays": [
+        {
+          "date": "2025-05-01",
+          "name": "Labour Day",
+          "start": "2025-05-01T00:00:00Z",
+          "end": "2025-05-01T23:59:59Z",
+          "rule": "fixed",
+          "type": "public"
+        }
+      ]
+    },
+    {
+      "id": 8601,
+      "customer": {
+        "zone_id": "Europe/Berlin"
+      },
+      "shifts": [
+        {
+          "id": 86001,
+          "workplace_id": 22,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-03-20T08:00:00+01:00",
+          "end_date_time": "2025-03-20T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 86002,
+          "workplace_id": 22,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-03-20T16:00:00+01:00",
+          "end_date_time": "2025-03-20T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 86003,
+          "workplace_id": 20,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-03-21T08:00:00+01:00",
+          "end_date_time": "2025-03-21T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 86004,
+          "workplace_id": 20,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-03-21T16:00:00+01:00",
+          "end_date_time": "2025-03-21T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 86005,
+          "workplace_id": 21,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-03-22T08:00:00+01:00",
+          "end_date_time": "2025-03-22T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 86006,
+          "workplace_id": 21,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-03-22T16:00:00+01:00",
+          "end_date_time": "2025-03-22T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        },
+        {
+          "id": 86007,
+          "workplace_id": 22,
+          "shift_card_id": "DAY",
+          "start_date_time": "2025-03-23T08:00:00+01:00",
+          "end_date_time": "2025-03-23T16:00:00+01:00",
+          "qualification_ids": [
+            1
+          ]
+        },
+        {
+          "id": 86008,
+          "workplace_id": 22,
+          "shift_card_id": "EVE",
+          "start_date_time": "2025-03-23T16:00:00+01:00",
+          "end_date_time": "2025-03-23T22:00:00+01:00",
+          "qualification_ids": [
+            2
+          ]
+        }
+      ],
+      "shift_assignments": [
+        {
+          "shift_id": 86001,
+          "employee_uuid": "E1001"
+        },
+        {
+          "shift_id": 86002,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 86003,
+          "employee_uuid": "E1002"
+        },
+        {
+          "shift_id": 86004,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 86005,
+          "employee_uuid": "E1001"
+        },
+        {
+          "shift_id": 86006,
+          "employee_uuid": "E1006"
+        },
+        {
+          "shift_id": 86007,
+          "employee_uuid": "E1003"
+        },
+        {
+          "shift_id": 86008,
+          "employee_uuid": "E1006"
+        }
+      ]
+    }
+  ],
+  "reportHtml": "viz_out\\report.html",
+  "assignmentReport": {
+    "shifts": [
+      {
+        "shiftId": 21001,
+        "meta": {
+          "unit": "20",
+          "shiftType": "DAY",
+          "weekday": 6,
+          "date": "2026-02-01",
+          "start": "08:00",
+          "end": "16:00",
+          "requiredQualifications": [
+            1
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1004",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1006",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1009",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1018",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1001",
+          "E1002",
+          "E1003",
+          "E1005",
+          "E1007",
+          "E1008",
+          "E1010",
+          "E1015",
+          "E1016",
+          "E1017"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1001",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1002",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1015",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          }
+        ],
+        "chosen": {
+          "userId": "E1001",
+          "p_calibrated": 0.3333333333333333
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21002,
+        "meta": {
+          "unit": "20",
+          "shiftType": "EVE",
+          "weekday": 6,
+          "date": "2026-02-01",
+          "start": "16:00",
+          "end": "22:00",
+          "requiredQualifications": [
+            2
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1001",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1002",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1005",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1007",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1010",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1003",
+          "E1004",
+          "E1006",
+          "E1008",
+          "E1009",
+          "E1015",
+          "E1016",
+          "E1017",
+          "E1018"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1006",
+            "p_calibrated": 1.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.95
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          },
+          {
+            "userId": "E1004",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.5
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1009",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.9
+          }
+        ],
+        "chosen": {
+          "userId": "E1006",
+          "p_calibrated": 1.0
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21003,
+        "meta": {
+          "unit": "21",
+          "shiftType": "DAY",
+          "weekday": 0,
+          "date": "2026-02-02",
+          "start": "08:00",
+          "end": "16:00",
+          "requiredQualifications": [
+            1
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1004",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1006",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1009",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1018",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1001",
+          "E1002",
+          "E1003",
+          "E1005",
+          "E1007",
+          "E1008",
+          "E1010",
+          "E1015",
+          "E1016",
+          "E1017"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1001",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1002",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1015",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          }
+        ],
+        "chosen": {
+          "userId": "E1001",
+          "p_calibrated": 0.3333333333333333
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21004,
+        "meta": {
+          "unit": "21",
+          "shiftType": "EVE",
+          "weekday": 0,
+          "date": "2026-02-02",
+          "start": "16:00",
+          "end": "22:00",
+          "requiredQualifications": [
+            2
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1001",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1002",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1005",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1007",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1010",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1003",
+          "E1004",
+          "E1006",
+          "E1008",
+          "E1009",
+          "E1015",
+          "E1016",
+          "E1017",
+          "E1018"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1006",
+            "p_calibrated": 1.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.95
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          },
+          {
+            "userId": "E1004",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.5
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1009",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.9
+          }
+        ],
+        "chosen": {
+          "userId": "E1006",
+          "p_calibrated": 1.0
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21005,
+        "meta": {
+          "unit": "22",
+          "shiftType": "DAY",
+          "weekday": 1,
+          "date": "2026-02-03",
+          "start": "08:00",
+          "end": "16:00",
+          "requiredQualifications": [
+            1
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1004",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1006",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1009",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1018",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1001",
+          "E1002",
+          "E1003",
+          "E1005",
+          "E1007",
+          "E1008",
+          "E1010",
+          "E1015",
+          "E1016",
+          "E1017"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1001",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1002",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1015",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          }
+        ],
+        "chosen": {
+          "userId": "E1001",
+          "p_calibrated": 0.3333333333333333
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21006,
+        "meta": {
+          "unit": "22",
+          "shiftType": "EVE",
+          "weekday": 1,
+          "date": "2026-02-03",
+          "start": "16:00",
+          "end": "22:00",
+          "requiredQualifications": [
+            2
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1001",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1002",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1005",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1007",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1010",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1003",
+          "E1004",
+          "E1006",
+          "E1008",
+          "E1009",
+          "E1015",
+          "E1016",
+          "E1017",
+          "E1018"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1006",
+            "p_calibrated": 1.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.95
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          },
+          {
+            "userId": "E1004",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.5
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1009",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.9
+          }
+        ],
+        "chosen": {
+          "userId": "E1006",
+          "p_calibrated": 1.0
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21007,
+        "meta": {
+          "unit": "20",
+          "shiftType": "DAY",
+          "weekday": 2,
+          "date": "2026-02-04",
+          "start": "08:00",
+          "end": "16:00",
+          "requiredQualifications": [
+            1
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1004",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1006",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1009",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1018",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1001",
+          "E1002",
+          "E1003",
+          "E1005",
+          "E1007",
+          "E1008",
+          "E1010",
+          "E1015",
+          "E1016",
+          "E1017"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1001",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 2,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 6.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1002",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1015",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          }
+        ],
+        "chosen": {
+          "userId": "E1001",
+          "p_calibrated": 0.3333333333333333
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21008,
+        "meta": {
+          "unit": "20",
+          "shiftType": "EVE",
+          "weekday": 2,
+          "date": "2026-02-04",
+          "start": "16:00",
+          "end": "22:00",
+          "requiredQualifications": [
+            2
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1001",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1002",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1005",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1007",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1010",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1003",
+          "E1004",
+          "E1006",
+          "E1008",
+          "E1009",
+          "E1015",
+          "E1016",
+          "E1017",
+          "E1018"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1006",
+            "p_calibrated": 1.0,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 1,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 111.0,
+            "userFTE": 0.95
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          },
+          {
+            "userId": "E1004",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.5
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1009",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.9
+          }
+        ],
+        "chosen": {
+          "userId": "E1006",
+          "p_calibrated": 1.0
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21009,
+        "meta": {
+          "unit": "21",
+          "shiftType": "DAY",
+          "weekday": 3,
+          "date": "2026-02-05",
+          "start": "08:00",
+          "end": "16:00",
+          "requiredQualifications": [
+            1
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1004",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1006",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1009",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1018",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1001",
+          "E1002",
+          "E1003",
+          "E1005",
+          "E1007",
+          "E1008",
+          "E1010",
+          "E1015",
+          "E1016",
+          "E1017"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1001",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1002",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 1,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 110.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1015",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 1.0,
+            "count_assigned": 2,
+            "count_assigned_holiday": 2,
+            "last_assigned_days": 5.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          }
+        ],
+        "chosen": {
+          "userId": "E1015",
+          "p_calibrated": 0.3333333333333333
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21010,
+        "meta": {
+          "unit": "21",
+          "shiftType": "EVE",
+          "weekday": 3,
+          "date": "2026-02-05",
+          "start": "16:00",
+          "end": "22:00",
+          "requiredQualifications": [
+            2
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1001",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1002",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1005",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1007",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1010",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1003",
+          "E1004",
+          "E1006",
+          "E1008",
+          "E1009",
+          "E1015",
+          "E1016",
+          "E1017",
+          "E1018"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1006",
+            "p_calibrated": 1.0,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 1,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 110.0,
+            "userFTE": 0.95
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          },
+          {
+            "userId": "E1004",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.5
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1009",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.9
+          }
+        ],
+        "chosen": {
+          "userId": "E1006",
+          "p_calibrated": 1.0
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21011,
+        "meta": {
+          "unit": "22",
+          "shiftType": "DAY",
+          "weekday": 4,
+          "date": "2026-02-06",
+          "start": "08:00",
+          "end": "16:00",
+          "requiredQualifications": [
+            1
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1004",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1006",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1009",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1018",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1001",
+          "E1002",
+          "E1003",
+          "E1005",
+          "E1007",
+          "E1008",
+          "E1010",
+          "E1015",
+          "E1016",
+          "E1017"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1001",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 1,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 109.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1002",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 1.0,
+            "count_assigned": 1,
+            "count_assigned_holiday": 1,
+            "last_assigned_days": 4.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1015",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          }
+        ],
+        "chosen": {
+          "userId": "E1002",
+          "p_calibrated": 0.3333333333333333
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21012,
+        "meta": {
+          "unit": "22",
+          "shiftType": "EVE",
+          "weekday": 4,
+          "date": "2026-02-06",
+          "start": "16:00",
+          "end": "22:00",
+          "requiredQualifications": [
+            2
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1001",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1002",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1005",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1007",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1010",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1003",
+          "E1004",
+          "E1006",
+          "E1008",
+          "E1009",
+          "E1015",
+          "E1016",
+          "E1017",
+          "E1018"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1006",
+            "p_calibrated": 1.0,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 1.0,
+            "count_assigned": 2,
+            "count_assigned_holiday": 1,
+            "last_assigned_days": 4.0,
+            "userFTE": 0.95
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          },
+          {
+            "userId": "E1004",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.5
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1009",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.9
+          }
+        ],
+        "chosen": {
+          "userId": "E1006",
+          "p_calibrated": 1.0
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21013,
+        "meta": {
+          "unit": "20",
+          "shiftType": "DAY",
+          "weekday": 5,
+          "date": "2026-02-07",
+          "start": "08:00",
+          "end": "16:00",
+          "requiredQualifications": [
+            1
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1004",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1006",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1009",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1018",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1001",
+          "E1002",
+          "E1003",
+          "E1005",
+          "E1007",
+          "E1008",
+          "E1010",
+          "E1015",
+          "E1016",
+          "E1017"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1001",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1002",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1015",
+            "p_calibrated": 0.3333333333333333,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 2,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 3.0,
+            "userFTE": 0.8
+          }
+        ],
+        "chosen": {
+          "userId": "E1001",
+          "p_calibrated": 0.3333333333333333
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": []
+      },
+      {
+        "shiftId": 21014,
+        "meta": {
+          "unit": "20",
+          "shiftType": "EVE",
+          "weekday": 5,
+          "date": "2026-02-07",
+          "start": "16:00",
+          "end": "22:00",
+          "requiredQualifications": [
+            2
+          ],
+          "isHoliday": 0
+        },
+        "preplannedUserId": null,
+        "positiveWishers": [],
+        "candidatesBeforeFilters": 14,
+        "filteredOut": [
+          {
+            "userId": "E1001",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1002",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1005",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1007",
+            "reasons": [
+              "not_qualified"
+            ]
+          },
+          {
+            "userId": "E1010",
+            "reasons": [
+              "not_qualified"
+            ]
+          }
+        ],
+        "candidatesAfterFilters": [
+          "E1003",
+          "E1004",
+          "E1006",
+          "E1008",
+          "E1009",
+          "E1015",
+          "E1016",
+          "E1017",
+          "E1018"
+        ],
+        "topCandidates": [
+          {
+            "userId": "E1006",
+            "p_calibrated": 1.0,
+            "rw_assign_rate": 1.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 2,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 3.0,
+            "userFTE": 0.95
+          },
+          {
+            "userId": "E1003",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.8
+          },
+          {
+            "userId": "E1004",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.5
+          },
+          {
+            "userId": "E1008",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 1.0
+          },
+          {
+            "userId": "E1009",
+            "p_calibrated": 0.0,
+            "rw_assign_rate": 0.0,
+            "rw_assign_rate_holiday": 0.0,
+            "count_assigned": 0,
+            "count_assigned_holiday": 0,
+            "last_assigned_days": 9999.0,
+            "userFTE": 0.9
+          }
+        ],
+        "chosen": {
+          "userId": "E1003",
+          "p_calibrated": 0.0
+        },
+        "decisionPath": [
+          "candidate_generation",
+          "scoring",
+          "greedy_pick_with_fairness"
+        ],
+        "notes": [
+          {
+            "fairness_skipped": [
+              {
+                "userId": "E1006",
+                "p": 1.0,
+                "reason": "fairness_cap"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "usersSummary": {
+      "E1001": {
+        "totalHours": 40.0,
+        "assignedCount": 5
+      },
+      "E1002": {
+        "totalHours": 8.0,
+        "assignedCount": 1
+      },
+      "E1003": {
+        "totalHours": 6.0,
+        "assignedCount": 1
+      },
+      "E1004": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      },
+      "E1005": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      },
+      "E1006": {
+        "totalHours": 36.0,
+        "assignedCount": 6
+      },
+      "E1007": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      },
+      "E1008": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      },
+      "E1009": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      },
+      "E1010": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      },
+      "E1015": {
+        "totalHours": 8.0,
+        "assignedCount": 1
+      },
+      "E1016": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      },
+      "E1017": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      },
+      "E1018": {
+        "totalHours": 0.0,
+        "assignedCount": 0
+      }
+    },
+    "modelSummary": {
+      "featureImportance": [
+        {
+          "feature": "userFTE",
+          "gain": 505.06663290128927
+        },
+        {
+          "feature": "weekday",
+          "gain": 52.89236278552562
+        },
+        {
+          "feature": "shiftType",
+          "gain": 40.98683749139309
+        },
+        {
+          "feature": "unit",
+          "gain": 38.15177076496184
+        },
+        {
+          "feature": "hour",
+          "gain": 2.100673019886017
+        },
+        {
+          "feature": "duration",
+          "gain": 2.0271927416324615
+        },
+        {
+          "feature": "isHoliday",
+          "gain": 0.0
+        },
+        {
+          "feature": "rw_assign_rate",
+          "gain": 0.0
+        },
+        {
+          "feature": "count_assigned",
+          "gain": 0.0
+        },
+        {
+          "feature": "last_assigned_days",
+          "gain": 0.0
+        }
+      ]
+    },
+    "runConfig": {
+      "fairness_weekly_cap_hours": 40.0,
+      "top_k": 5
+    }
+  }
+}

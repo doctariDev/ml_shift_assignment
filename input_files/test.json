@@ -1,0 +1,175 @@
+{
+  "users": [
+    {"id": "u1", "role": "nurse", "qualifications": ["ICU"], "contractFTE": 1.0, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 0, "start": "07:00", "end": "20:00"}, {"weekday": 1, "start": "07:00", "end": "20:00"}, {"weekday": 2, "start": "07:00", "end": "20:00"}, {"weekday": 3, "start": "07:00", "end": "20:00"}, {"weekday": 4, "start": "07:00", "end": "20:00"}, {"weekday": 5, "start": "07:00", "end": "20:00"}, {"weekday": 6, "start": "07:00", "end": "20:00"}],
+      "timeOff": []
+    },
+    {"id": "u2", "role": "nurse", "qualifications": ["ICU"], "contractFTE": 0.8, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 0, "start": "07:00", "end": "20:00"}, {"weekday": 1, "start": "07:00", "end": "20:00"}, {"weekday": 2, "start": "07:00", "end": "20:00"}, {"weekday": 3, "start": "07:00", "end": "20:00"}, {"weekday": 4, "start": "07:00", "end": "20:00"}],
+      "timeOff": []
+    },
+    {"id": "u3", "role": "nurse", "qualifications": ["Ward"], "contractFTE": 1.0, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 0, "start": "07:00", "end": "22:00"}, {"weekday": 1, "start": "07:00", "end": "22:00"}, {"weekday": 2, "start": "07:00", "end": "22:00"}, {"weekday": 3, "start": "07:00", "end": "22:00"}, {"weekday": 4, "start": "07:00", "end": "22:00"}],
+      "timeOff": []
+    },
+    {"id": "u4", "role": "nurse", "qualifications": ["ICU", "Ward"], "contractFTE": 0.6, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 2, "start": "07:00", "end": "23:00"}, {"weekday": 3, "start": "07:00", "end": "23:00"}, {"weekday": 4, "start": "07:00", "end": "23:00"}],
+      "timeOff": []
+    },
+    {"id": "u5", "role": "nurse", "qualifications": ["Ward"], "contractFTE": 0.8, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 0, "start": "07:00", "end": "15:00"}, {"weekday": 1, "start": "07:00", "end": "15:00"}, {"weekday": 2, "start": "07:00", "end": "15:00"}, {"weekday": 3, "start": "07:00", "end": "15:00"}, {"weekday": 4, "start": "07:00", "end": "15:00"}],
+      "timeOff": []
+    },
+    {"id": "u6", "role": "nurse", "qualifications": ["ICU"], "contractFTE": 1.0, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 5, "start": "07:00", "end": "20:00"}, {"weekday": 6, "start": "07:00", "end": "20:00"}, {"weekday": 0, "start": "07:00", "end": "20:00"}],
+      "timeOff": []
+    },
+    {"id": "u7", "role": "nurse", "qualifications": ["Ward"], "contractFTE": 0.7, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 2, "start": "12:00", "end": "22:00"}, {"weekday": 3, "start": "12:00", "end": "22:00"}, {"weekday": 4, "start": "12:00", "end": "22:00"}],
+      "timeOff": []
+    },
+    {"id": "u8", "role": "nurse", "qualifications": ["ICU"], "contractFTE": 0.5, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 1, "start": "08:00", "end": "18:00"}, {"weekday": 2, "start": "08:00", "end": "18:00"}, {"weekday": 3, "start": "08:00", "end": "18:00"}],
+      "timeOff": []
+    },
+    {"id": "u9", "role": "nurse", "qualifications": ["Ward"], "contractFTE": 1.0, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 5, "start": "07:00", "end": "22:00"}, {"weekday": 6, "start": "07:00", "end": "22:00"}],
+      "timeOff": []
+    },
+    {"id": "u10", "role": "nurse", "qualifications": ["ICU", "Ward"], "contractFTE": 1.0, "activeFrom": "2024-01-01", "activeTo": null,
+      "availability": [{"weekday": 0, "start": "07:00", "end": "22:00"}, {"weekday": 1, "start": "07:00", "end": "22:00"}, {"weekday": 2, "start": "07:00", "end": "22:00"}, {"weekday": 3, "start": "07:00", "end": "22:00"}, {"weekday": 4, "start": "07:00", "end": "22:00"}],
+      "timeOff": []
+    }
+  ],
+  "shifts": [
+    {"id": "w1_d1_s1", "periodId": "hist_w1", "unit": "ICU", "shiftType": "Day", "weekday": 0, "date": "2025-01-06", "start": "08:00", "end": "16:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w1_d1_s2", "periodId": "hist_w1", "unit": "Ward", "shiftType": "Early", "weekday": 0, "date": "2025-01-06", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w1_d2_A",  "periodId": "hist_w1", "unit": "ICU", "shiftType": "A",   "weekday": 1, "date": "2025-01-07", "start": "10:00", "end": "18:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w1_d2_s1", "periodId": "hist_w1", "unit": "Ward", "shiftType": "Late", "weekday": 1, "date": "2025-01-07", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w1_d3_s1", "periodId": "hist_w1", "unit": "ICU", "shiftType": "Early", "weekday": 2, "date": "2025-01-08", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w1_d3_s2", "periodId": "hist_w1", "unit": "Ward", "shiftType": "Day",   "weekday": 2, "date": "2025-01-08", "start": "09:00", "end": "17:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w1_d4_s1", "periodId": "hist_w1", "unit": "ICU", "shiftType": "Late",  "weekday": 3, "date": "2025-01-09", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w1_d5_s1", "periodId": "hist_w1", "unit": "Ward", "shiftType": "Day",  "weekday": 4, "date": "2025-01-10", "start": "08:00", "end": "16:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w1_d6_s1", "periodId": "hist_w1", "unit": "ICU", "shiftType": "Day",  "weekday": 5, "date": "2025-01-11", "start": "08:00", "end": "16:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w1_d7_s1", "periodId": "hist_w1", "unit": "Ward", "shiftType": "Late", "weekday": 6, "date": "2025-01-12", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w2_d1_s1", "periodId": "hist_w2", "unit": "ICU", "shiftType": "Early", "weekday": 0, "date": "2025-01-13", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w2_d1_s2", "periodId": "hist_w2", "unit": "Ward", "shiftType": "Day",  "weekday": 0, "date": "2025-01-13", "start": "09:00", "end": "17:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w2_d2_A",  "periodId": "hist_w2", "unit": "ICU", "shiftType": "A",   "weekday": 1, "date": "2025-01-14", "start": "10:00", "end": "18:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w2_d2_s1", "periodId": "hist_w2", "unit": "Ward", "shiftType": "Late", "weekday": 1, "date": "2025-01-14", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w2_d3_s1", "periodId": "hist_w2", "unit": "ICU", "shiftType": "Night","weekday": 2, "date": "2025-01-15", "start": "20:00", "end": "06:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w2_d4_s1", "periodId": "hist_w2", "unit": "Ward", "shiftType": "Early","weekday": 3, "date": "2025-01-16", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w2_d5_s1", "periodId": "hist_w2", "unit": "ICU", "shiftType": "Day",  "weekday": 4, "date": "2025-01-17", "start": "08:00", "end": "16:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w2_d6_s1", "periodId": "hist_w2", "unit": "Ward", "shiftType": "Day", "weekday": 5, "date": "2025-01-18", "start": "09:00", "end": "17:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+    {"id": "w2_d7_s1", "periodId": "hist_w2", "unit": "ICU", "shiftType": "Late", "weekday": 6, "date": "2025-01-19", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w3_d1_s1", "periodId": "hist_w3", "unit": "ICU", "shiftType": "Day",   "weekday": 0, "date": "2025-01-20", "start": "08:00", "end": "16:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w3_d1_s2", "periodId": "hist_w3", "unit": "Ward", "shiftType": "Early", "weekday": 0, "date": "2025-01-20", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w3_d2_A",  "periodId": "hist_w3", "unit": "ICU", "shiftType": "A",   "weekday": 1, "date": "2025-01-21", "start": "10:00", "end": "18:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w3_d2_s1", "periodId": "hist_w3", "unit": "Ward", "shiftType": "Late", "weekday": 1, "date": "2025-01-21", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w3_d3_s1", "periodId": "hist_w3", "unit": "ICU", "shiftType": "Early", "weekday": 2, "date": "2025-01-22", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w3_d4_s1", "periodId": "hist_w3", "unit": "Ward", "shiftType": "Day",  "weekday": 3, "date": "2025-01-23", "start": "09:00", "end": "17:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w3_d5_s1", "periodId": "hist_w3", "unit": "ICU", "shiftType": "Late",  "weekday": 4, "date": "2025-01-24", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w3_d6_s1", "periodId": "hist_w3", "unit": "Ward", "shiftType": "Day",  "weekday": 5, "date": "2025-01-25", "start": "09:00", "end": "17:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+    {"id": "w3_d7_s1", "periodId": "hist_w3", "unit": "ICU", "shiftType": "Night", "weekday": 6, "date": "2025-01-26", "start": "20:00", "end": "06:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w4_d1_s1", "periodId": "hist_w4", "unit": "ICU", "shiftType": "Early", "weekday": 0, "date": "2025-01-27", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w4_d1_s2", "periodId": "hist_w4", "unit": "Ward", "shiftType": "Late", "weekday": 0, "date": "2025-01-27", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w4_d2_A",  "periodId": "hist_w4", "unit": "ICU", "shiftType": "A",   "weekday": 1, "date": "2025-01-28", "start": "10:00", "end": "18:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "w4_d2_s1", "periodId": "hist_w4", "unit": "Ward", "shiftType": "Early", "weekday": 1, "date": "2025-01-28", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w4_d3_s1", "periodId": "hist_w4", "unit": "ICU", "shiftType": "Day",   "weekday": 2, "date": "2025-01-29", "start": "08:00", "end": "16:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w4_d4_s1", "periodId": "hist_w4", "unit": "Ward", "shiftType": "Day",  "weekday": 3, "date": "2025-01-30", "start": "09:00", "end": "17:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+
+    {"id": "w4_d5_s1", "periodId": "hist_w4", "unit": "ICU", "shiftType": "Late",  "weekday": 4, "date": "2025-01-31", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "w4_d6_s1", "periodId": "hist_w4", "unit": "Ward", "shiftType": "Day",  "weekday": 5, "date": "2025-02-01", "start": "09:00", "end": "17:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+    {"id": "w4_d7_s1", "periodId": "hist_w4", "unit": "ICU", "shiftType": "Night", "weekday": 6, "date": "2025-02-02", "start": "20:00", "end": "06:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+
+    {"id": "t5_d1_s1", "periodId": "target_w5", "unit": "ICU", "shiftType": "Day", "weekday": 0, "date": "2025-02-03", "start": "08:00", "end": "16:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "t5_d2_A",  "periodId": "target_w5", "unit": "ICU", "shiftType": "A",   "weekday": 1, "date": "2025-02-04", "start": "10:00", "end": "18:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "t5_d3_s1", "periodId": "target_w5", "unit": "Ward", "shiftType": "Early", "weekday": 2, "date": "2025-02-05", "start": "07:00", "end": "15:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []},
+    {"id": "t5_d4_s1", "periodId": "target_w5", "unit": "ICU", "shiftType": "Late",  "weekday": 3, "date": "2025-02-06", "start": "12:00", "end": "20:00", "parallelShiftIds": [], "requiredQualifications": ["ICU"], "isHoliday": false, "requests": []},
+    {"id": "t5_d5_s1", "periodId": "target_w5", "unit": "Ward", "shiftType": "Day",  "weekday": 4, "date": "2025-02-07", "start": "09:00", "end": "17:00", "parallelShiftIds": [], "requiredQualifications": ["Ward"], "isHoliday": false, "requests": []}
+  ],
+  "assignments": [
+    {"shiftId": "w1_d1_s1", "userId": "u10"},
+    {"shiftId": "w1_d1_s2", "userId": "u5"},
+
+    {"shiftId": "w1_d2_A",  "userId": "u8"},
+    {"shiftId": "w1_d2_s1", "userId": "u3"},
+
+    {"shiftId": "w1_d3_s1", "userId": "u2"},
+    {"shiftId": "w1_d3_s2", "userId": "u7"},
+
+    {"shiftId": "w1_d4_s1", "userId": "u10"},
+
+    {"shiftId": "w1_d5_s1", "userId": "u9"},
+
+    {"shiftId": "w1_d6_s1", "userId": "u6"},
+    {"shiftId": "w1_d7_s1", "userId": "u9"},
+
+    {"shiftId": "w2_d1_s1", "userId": "u2"},
+    {"shiftId": "w2_d1_s2", "userId": "u5"},
+
+    {"shiftId": "w2_d2_A",  "userId": "u8"},
+    {"shiftId": "w2_d2_s1", "userId": "u7"},
+
+    {"shiftId": "w2_d3_s1", "userId": "u10"},
+
+    {"shiftId": "w2_d4_s1", "userId": "u3"},
+
+    {"shiftId": "w2_d5_s1", "userId": "u6"},
+
+    {"shiftId": "w2_d6_s1", "userId": "u9"},
+    {"shiftId": "w2_d7_s1", "userId": "u2"},
+
+    {"shiftId": "w3_d1_s1", "userId": "u10"},
+    {"shiftId": "w3_d1_s2", "userId": "u5"},
+
+    {"shiftId": "w3_d2_A",  "userId": "u8"},
+    {"shiftId": "w3_d2_s1", "userId": "u3"},
+
+    {"shiftId": "w3_d3_s1", "userId": "u2"},
+
+    {"shiftId": "w3_d4_s1", "userId": "u5"},
+
+    {"shiftId": "w3_d5_s1", "userId": "u10"},
+
+    {"shiftId": "w3_d6_s1", "userId": "u9"},
+    {"shiftId": "w3_d7_s1", "userId": "u6"},
+
+
+    {"shiftId": "w4_d1_s1", "userId": "u2"},
+    {"shiftId": "w4_d1_s2", "userId": "u7"},
+
+    {"shiftId": "w4_d2_A",  "userId": "u8"},
+    {"shiftId": "w4_d2_s1", "userId": "u5"},
+
+    {"shiftId": "w4_d3_s1", "userId": "u10"},
+
+    {"shiftId": "w4_d4_s1", "userId": "u3"},
+
+    {"shiftId": "w4_d5_s1", "userId": "u6"},
+
+    {"shiftId": "w4_d6_s1", "userId": "u9"},
+    {"shiftId": "w4_d7_s1", "userId": "u2"}
+  ]
+}
