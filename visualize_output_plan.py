@@ -14,7 +14,7 @@ import sys
 INPUT_JSON = "output/output_job.json"
 
 # Output dir for calendar images
-CALENDER_OUT_DIR = "calender_out"
+CALENDER_OUT_DIR = "output/calender_renders"
 DPI = 300  # high resolution for readability
 
 # Colors

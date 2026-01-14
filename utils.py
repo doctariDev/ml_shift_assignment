@@ -9,18 +9,14 @@ from sklearn.isotonic import IsotonicRegression
 from sklearn.metrics import roc_auc_score, brier_score_loss, average_precision_score
 import lightgbm as lgb
 import warnings
-from pathlib import Path
-from IPython.display import HTML, display
-from ipywidgets import ToggleButton, VBox, Output
-from visualize_output_plan import render_visualizations, ensure_dir
 
 warnings.filterwarnings("ignore")
 
 # =========================
-# Timezone helper (optional)
+# Timezone helper
 # =========================
 try:
-    from zoneinfo import ZoneInfo  # Python 3.9+
+    from zoneinfo import ZoneInfo
 except Exception:
     ZoneInfo = None
 
@@ -66,58 +62,6 @@ def is_holiday_day(shift_start_dt: datetime, holiday_days: set) -> bool:
 # Core utilities
 # =========================
 
-# utils.py
-from pathlib import Path
-from IPython.display import HTML, display
-from ipywidgets import ToggleButton, VBox, Output
-
-def show_report_toggle(report_path: str | Path, title: str = "report"):
-    """
-    Create and display a toggle button that shows/hides an HTML report inline.
-
-    Parameters
-    ----------
-    report_path : str | Path
-        Path to the HTML file.
-    title : str
-        Label used in the button text, e.g., "report" -> "Show report".
-    """
-    p = Path(report_path)
-
-    toggle = ToggleButton(
-        value=False,
-        description=f"Show {title}",
-        icon="eye",
-        button_style="",  # '', 'success', 'info', 'warning', 'danger'
-    )
-    out = Output()
-
-    def render():
-        out.clear_output()
-        if not p.exists():
-            with out:
-                print(f"Report not found: {p.resolve()}")
-            return
-        with p.open("r", encoding="utf-8") as f:
-            html = f.read()
-        with out:
-            display(HTML(html))
-
-    def on_toggle(change):
-        if change["name"] != "value":
-            return
-        if change["new"]:
-            toggle.description = f"Hide {title}"
-            toggle.icon = "eye-slash"
-            render()
-        else:
-            toggle.description = f"Show {title}"
-            toggle.icon = "eye"
-            out.clear_output()
-
-    toggle.observe(on_toggle)
-    display(VBox([toggle, out]))
-
 
 def get_feature_importance_dict(model, features):
     imp_gain = model.feature_importance(importance_type="gain")
@@ -162,9 +106,7 @@ def in_date_range(date_obj, start: Optional[str], end: Optional[str]) -> bool:
             return False
     return True
 
-# Week helpers for periodic features
 def iso_week_index_from_date(d: date_cls) -> int:
-    # stable increasing index: year*100 + week (ISO)
     y, w, _ = d.isocalendar()
     return int(y) * 100 + int(w)
 
@@ -176,7 +118,7 @@ def rolling_weeks_freq(weeks_sorted: list[int], current_week_idx: int, window: i
     return cnt / float(window)
 
 # =========================
-# Feasibility checks (doctari schema)
+# Hard constraints
 # =========================
 
 def user_qualified(user: Dict[str, Any], required_quals: List[int]) -> bool:
@@ -300,7 +242,6 @@ def collect_history_stats(hist_shifts_df: pd.DataFrame,
     now = df["date"].max()
     now_dt = pd.to_datetime(now) if pd.notnull(now) else pd.Timestamp(datetime.utcnow())
 
-    # default fields plus periodic store
     def _init():
         return {
             "rw_denom": 0.0, "rw_num": 0.0,
@@ -308,8 +249,7 @@ def collect_history_stats(hist_shifts_df: pd.DataFrame,
             "last_assigned_days": 9999.0,
             "rw_denom_holiday": 0.0, "rw_num_holiday": 0.0,
             "count_occurrences_holiday": 0, "count_assigned_holiday": 0,
-            # periodicity store
-            "weeks_worked": []  # sorted later
+            "weeks_worked": [] 
         }
 
     stats = defaultdict(lambda: defaultdict(_init))
@@ -343,7 +283,6 @@ def collect_history_stats(hist_shifts_df: pd.DataFrame,
         s["count_occurrences"] += 1
         s["last_assigned_days"] = min(s["last_assigned_days"], (now_dt - date_dt).days)
 
-        # store ISO week index for periodicity
         wk_idx = iso_week_index_from_date(date_dt.date())
         s["weeks_worked"].append(wk_idx)
 
@@ -353,7 +292,6 @@ def collect_history_stats(hist_shifts_df: pd.DataFrame,
             s["count_assigned_holiday"] += 1
             s["count_occurrences_holiday"] += 1
 
-    # finalize derived rates and sort the weeks list
     for uid, ctxs in stats.items():
         for ctx, s in ctxs.items():
             s["rw_assign_rate"] = (s["rw_num"] / max(s["rw_denom"], 1e-6))
@@ -361,7 +299,7 @@ def collect_history_stats(hist_shifts_df: pd.DataFrame,
                 s["rw_assign_rate_holiday"] = s["rw_num_holiday"] / max(s["rw_denom_holiday"], 1e-6)
             else:
                 s["rw_assign_rate_holiday"] = 0.0
-            s["weeks_worked"] = sorted(set(s["weeks_worked"]))  # dedupe + sort
+            s["weeks_worked"] = sorted(set(s["weeks_worked"]))
 
     return stats
 
@@ -437,7 +375,6 @@ def build_training_data(hist_shifts_df: pd.DataFrame,
                 "count_assigned": sstats.get("count_assigned", 0),
                 "last_assigned_days": sstats.get("last_assigned_days", 9999.0),
                 "userFTE": (urec.get("timed_properties", [{}])[0].get("weekly_hours", 40.0))/40.0,
-                # periodicity features
                 **pfeats
             })
         neg_pool = [u for u in compatible if u not in pos_users]
@@ -456,7 +393,6 @@ def build_training_data(hist_shifts_df: pd.DataFrame,
                     "count_assigned": sstats.get("count_assigned", 0),
                     "last_assigned_days": sstats.get("last_assigned_days", 9999.0),
                     "userFTE": (urec.get("timed_properties", [{}])[0].get("weekly_hours", 40.0))/40.0,
-                    # periodicity features
                     **pfeats
                 })
 
@@ -475,7 +411,6 @@ def train_and_calibrate_with_val(df: pd.DataFrame) -> Tuple[Any, Any, List[str],
     features = [
         "unit", "shiftType", "weekday", "hour", "duration", "isHoliday",
         "rw_assign_rate", "count_assigned", "last_assigned_days", "userFTE",
-        # periodicity features
         "weeks_since_last_ctx_wd", "worked_last_1w_ctx_wd", "worked_last_2w_ctx_wd", "freq_ctx_wd_8w"
     ]
     X = df[features]
@@ -557,7 +492,6 @@ def score_candidates_for_shift(shift: Dict[str, Any],
             "count_assigned": s.get("count_assigned", 0),
             "last_assigned_days": s.get("last_assigned_days", 9999.0),
             "userFTE": (urec.get("timed_properties", [{}])[0].get("weekly_hours", 40.0))/40.0,
-            # periodicity features
             **pfeats
         })
         idx.append(uid)
@@ -575,8 +509,8 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
                          shift_index: Dict[int, Dict[str, Any]],
                          model, iso_calibrator, features,
                          stats_by_user_ctx: Dict[str, Dict[Tuple, Dict[str, float]]],
-                         fairness_weekly_soft_cap_hours: Optional[float] = None,   # optional global default; overridden by employee values
-                         fairness_opt_out_hard_cap_delta_hours: Optional[float] = None,  # optional global delta if max_weekly_hours missing
+                         fairness_weekly_soft_cap_hours: Optional[float] = None,   
+                         fairness_opt_out_hard_cap_delta_hours: Optional[float] = None,  
                          customer_tz: Optional[str] = None,
                          top_k: int = 5) -> Tuple[Dict[int, str], Dict[str, Any]]:
     assigned_by_user: Dict[str, List[int]] = defaultdict(list)
@@ -595,15 +529,6 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
             "top_k": top_k
         }
     }
-
-    def shift_hours(s):
-        try:
-            start = parse_time_simple(s["start"])
-            end = parse_time_simple(s["end"])
-            dt = datetime.combine(to_date(s["date"]), end) - datetime.combine(to_date(s["date"]), start)
-            return dt.seconds / 3600.0
-        except Exception:
-            return 8.0
 
     def week_key_from_date_str(dstr: str) -> str:
         d = to_date(dstr)
@@ -681,7 +606,6 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
         ctx = (s["unit"], s["shiftType"], s["weekday"])
         stats_for_uid = {uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {}) for uid, _ in ranked}
 
-        # Optional top-k diagnostics (kept)
         top_list_report = sorted(ranked, key=lambda t: t[1], reverse=True)[:top_k]
         enriched_top = []
         for uid, p in top_list_report:
@@ -717,7 +641,6 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
 
         explanation["decisionPath"].append("greedy_pick_with_soft_fairness_and_employee_opt_out_cap")
 
-        # Hours for this shift and week key
         try:
             hrs = (datetime.combine(to_date(s["date"]), parse_time_simple(s["end"])) -
                    datetime.combine(to_date(s["date"]), parse_time_simple(s["start"]))).seconds / 3600.0
@@ -731,17 +654,14 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
         for uid, p in ranked:
             urec = users_by_id.get(uid, {})
             tp = (urec.get("timed_properties") or [{}])[0]
-            # Employee-specific soft and hard caps
             soft_cap_uid = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
             hard_cap_uid = tp.get("max_weekly_hours", None)
-            # If hard cap missing, derive from soft + global delta if provided
             if hard_cap_uid is None and fairness_opt_out_hard_cap_delta_hours is not None:
                 hard_cap_uid = soft_cap_uid + fairness_opt_out_hard_cap_delta_hours
 
             current_week_hours = assigned_hours_by_user_week[(uid, wk)]
             new_hours = current_week_hours + hrs
 
-            # Enforce hard cap (opt-out)
             if hard_cap_uid is not None and new_hours > hard_cap_uid:
                 fairness_skips_hardcap.append({
                     "userId": uid, "reason": "opt_out_hard_cap", "week": wk,
@@ -769,7 +689,6 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
         scored_sorted = sorted(scored, key=lambda t: t[1], reverse=True)
         chosen, final_score, base_score, penalty_applied, final_week_hours = scored_sorted[0]
 
-        # Assign
         result[sid] = chosen
         assigned_by_user[chosen].append(sid)
         assigned_hours_by_user_week[(chosen, wk)] += hrs
@@ -798,7 +717,7 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
     return result, report
 
 # =========================
-# Compact output (final_score only)
+# Build output
 # =========================
 
 def build_assigned_output_final_only(report: dict) -> dict:
@@ -820,12 +739,8 @@ import os
 def assign_top_candidates_to_shifts(base_json_path: str,
                                     model_output_path: str,
                                     out_json_path: str,
-                                    source_label: str = "MODEL_TOP"):
-    """
-    Read base plan JSON and model output JSON, assign highest-scoring employee per shift,
-    and write a new JSON with updated 'shift_assignments'.
-    """
-    # Load inputs
+                                    source_label: str = "ML_MODEL"):
+
     with open(base_json_path, "r", encoding="utf-8") as f:
         base = json.load(f)
     with open(model_output_path, "r", encoding="utf-8") as f:
@@ -834,7 +749,6 @@ def assign_top_candidates_to_shifts(base_json_path: str,
     sp = base.get("shift_plan", {}) or {}
     base_assignments = sp.get("shift_assignments", []) or []
 
-    # Index existing assignments by shift_id for easy merge
     existing_by_shift = {}
     for a in base_assignments:
         try:
@@ -847,7 +761,6 @@ def assign_top_candidates_to_shifts(base_json_path: str,
         except (TypeError, ValueError):
             continue
 
-    # Build top candidate assignment from model output
     top_by_shift = {}
     for entry in model.get("shifts", []) or []:
         sid = entry.get("shiftId")
@@ -872,7 +785,6 @@ def assign_top_candidates_to_shifts(base_json_path: str,
             "source": source_label
         }
 
-    # Optional: filter model assignments to known shifts in base plan
     known_shift_ids = set()
     for sh in sp.get("shifts", []) or []:
         try:
@@ -884,23 +796,17 @@ def assign_top_candidates_to_shifts(base_json_path: str,
         if sid in known_shift_ids:
             filtered_top_by_shift[sid] = a
 
-    # Merge policy:
-    # - If model provides a top assignment -> use it
-    # - Else -> keep existing assignment
     merged_assignments_by_shift = dict(existing_by_shift)
     for sid, a in filtered_top_by_shift.items():
         merged_assignments_by_shift[sid] = a
 
-    # Build final shift_assignments list (stable order by shift_id ascending)
     new_assignments = sorted(merged_assignments_by_shift.values(), key=lambda x: x["shift_id"])
 
-    # Write back into a copy of base JSON
     out_base = dict(base)
     out_sp = dict(sp)
     out_sp["shift_assignments"] = new_assignments
     out_base["shift_plan"] = out_sp
 
-    # Save
     os.makedirs(os.path.dirname(out_json_path), exist_ok=True)
     with open(out_json_path, "w", encoding="utf-8") as f:
         json.dump(out_base, f, indent=2, ensure_ascii=False)
