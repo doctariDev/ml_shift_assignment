@@ -9,7 +9,9 @@ from sklearn.isotonic import IsotonicRegression
 from sklearn.metrics import roc_auc_score, brier_score_loss, average_precision_score
 import lightgbm as lgb
 import warnings
-
+from pathlib import Path
+from IPython.display import HTML, display
+from ipywidgets import ToggleButton, VBox, Output
 from visualize_output_plan import render_visualizations, ensure_dir
 
 warnings.filterwarnings("ignore")
@@ -63,6 +65,59 @@ def is_holiday_day(shift_start_dt: datetime, holiday_days: set) -> bool:
 # =========================
 # Core utilities
 # =========================
+
+# utils.py
+from pathlib import Path
+from IPython.display import HTML, display
+from ipywidgets import ToggleButton, VBox, Output
+
+def show_report_toggle(report_path: str | Path, title: str = "report"):
+    """
+    Create and display a toggle button that shows/hides an HTML report inline.
+
+    Parameters
+    ----------
+    report_path : str | Path
+        Path to the HTML file.
+    title : str
+        Label used in the button text, e.g., "report" -> "Show report".
+    """
+    p = Path(report_path)
+
+    toggle = ToggleButton(
+        value=False,
+        description=f"Show {title}",
+        icon="eye",
+        button_style="",  # '', 'success', 'info', 'warning', 'danger'
+    )
+    out = Output()
+
+    def render():
+        out.clear_output()
+        if not p.exists():
+            with out:
+                print(f"Report not found: {p.resolve()}")
+            return
+        with p.open("r", encoding="utf-8") as f:
+            html = f.read()
+        with out:
+            display(HTML(html))
+
+    def on_toggle(change):
+        if change["name"] != "value":
+            return
+        if change["new"]:
+            toggle.description = f"Hide {title}"
+            toggle.icon = "eye-slash"
+            render()
+        else:
+            toggle.description = f"Show {title}"
+            toggle.icon = "eye"
+            out.clear_output()
+
+    toggle.observe(on_toggle)
+    display(VBox([toggle, out]))
+
 
 def get_feature_importance_dict(model, features):
     imp_gain = model.feature_importance(importance_type="gain")
@@ -164,6 +219,7 @@ def adapt_past_plans_to_frames(data: Dict[str, Any]) -> Tuple[pd.DataFrame, pd.D
             start_dt_local = dt_parse_iso(sh["start_date_time"], tz)
             end_dt_local = dt_parse_iso(sh["end_date_time"], tz)
             is_hol = is_holiday_day(start_dt_local, holiday_days)
+
             shift_rows.append({
                 "id": sid,
                 "unit": str(sh.get("workplace_id")),
@@ -507,6 +563,7 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
             "filteredOut": [],
             "candidatesAfterFilters": [],
             "topCandidates": [],
+            "candidatesAfterFinalScoreOnly": [],  # NEW: final scores list used for compact output
             "chosen": None,
             "decisionPath": [],
             "notes": []
@@ -547,6 +604,7 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
         ctx = (s["unit"], s["shiftType"], s["weekday"])
         stats_for_uid = {uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {}) for uid, _ in ranked}
 
+        # Optional top-k diagnostics (kept)
         top_list_report = sorted(ranked, key=lambda t: t[1], reverse=True)[:top_k]
         enriched_top = []
         for uid, p in top_list_report:
@@ -609,7 +667,7 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
             # Enforce hard cap (opt-out)
             if hard_cap_uid is not None and new_hours > hard_cap_uid:
                 fairness_skips_hardcap.append({
-                    "userId": uid, "p": float(p), "reason": "opt_out_hard_cap", "week": wk,
+                    "userId": uid, "reason": "opt_out_hard_cap", "week": wk,
                     "current_week_hours": float(current_week_hours),
                     "hard_cap_uid": float(hard_cap_uid)
                 })
@@ -617,7 +675,13 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
 
             base = blended_score(uid, p)
             pen = fairness_penalty(new_hours, soft_cap_uid, hard_cap_uid)
-            scored.append((uid, base - pen, base, pen, float(new_hours)))
+            final = base - pen
+            # Keep only the final score for compact export
+            explanation["candidatesAfterFinalScoreOnly"].append({
+                "userId": uid,
+                "final_score": float(final)
+            })
+            scored.append((uid, final, base, pen, float(new_hours)))
 
         if not scored:
             explanation["notes"].append("no candidate within employee opt-out hard cap")
@@ -647,6 +711,9 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
         if fairness_skips_hardcap:
             explanation["notes"].append({"hard_cap_skipped": fairness_skips_hardcap})
 
+        # Sort candidates list by final_score desc for readability
+        explanation["candidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
+
         report["shifts"].append(explanation)
 
     for uid in users_by_id.keys():
@@ -655,3 +722,24 @@ def assign_target_period(target_shifts: List[Dict[str, Any]],
             "assignedCount": len(assigned_by_user.get(uid, []))
         }
     return result, report
+
+# =========================
+# Compact output (final_score only)
+# =========================
+
+def build_assigned_output_final_only(report: dict) -> dict:
+
+    shifts = []
+    for s in report.get("shifts", []):
+        cands = s.get("candidatesAfterFinalScoreOnly") or []
+        # normalize and sort by final_score desc
+        cands = [
+            {"userId": c["userId"], "final_score": float(c.get("final_score", 0.0))}
+            for c in cands
+        ]
+        cands.sort(key=lambda d: d["final_score"], reverse=True)
+        shifts.append({
+            "shiftId": int(s.get("shiftId")),
+            "candidates": cands
+        })
+    return {"shifts": shifts}

@@ -15,10 +15,31 @@ from utils import (
 from visualize_output_plan import ensure_dir, render_visualizations
 
 
+def _build_assigned_output_final_only(report: dict) -> dict:
+
+    assigned = []
+    for s in report.get("shifts", []):
+        chosen = (s.get("chosen") or {}).get("userId")
+        if not chosen:
+            continue
+        cands = s.get("candidatesAfterFinalScoreOnly") or []
+        # Normalize and sort by final_score desc
+        cands = [
+            {"userId": c["userId"], "final_score": float(c.get("final_score", 0.0))}
+            for c in cands
+        ]
+        cands.sort(key=lambda d: d["final_score"], reverse=True)
+        assigned.append({
+            "shiftId": int(s.get("shiftId")),
+            "candidates": cands
+        })
+    return {"shifts": assigned}
+
+
 def run_pipeline(
     planning_request_complete_path: str,
     visualization_mode: bool = False,
-    output_dir: str = "viz_out",
+    output_dir: str = "output_report",
 ):
     with open(planning_request_complete_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -63,7 +84,7 @@ def run_pipeline(
         kept.append({"shift_id": int(sid), "employee_uuid": uid, "source": "MODEL"})
     data["shift_plan"]["shift_assignments"] = kept
 
-    # Visualization
+    # Visualization (optional)
     if visualization_mode:
         ensure_dir(output_dir)
         viz = render_visualizations(
@@ -74,22 +95,17 @@ def run_pipeline(
         data["reportHtml"] = viz["html"]
         print(f"Visualization written to: {viz['html']}")
 
-    # Attach report
+    # Attach full report to return value (for diagnostics/UI)
     data["assignmentReport"] = report
+
+    # Build and persist the compact output (final_score only)
+    compact = _build_assigned_output_final_only(report)
+
+    ensure_dir("output")
+    with open("output/output_job.json", "w", encoding="utf-8") as f:
+        json.dump(compact, f, indent=2, ensure_ascii=False)
+    print("Wrote compact output with final scores to: output/output_job.json")
+
     return data
 
 
-if __name__ == "__main__":
-    output = run_pipeline(
-        planning_request_complete_path="input_files/check_public_holiday_pattern.json",
-        visualization_mode=True,
-        output_dir="output/viz_out",
-    )
-    with open("output/output_job.json", "w", encoding="utf-8") as f:
-        json.dump(output, f, indent=2, ensure_ascii=False)
-    assigned_pairs = [
-        (a["shift_id"], a["employee_uuid"])
-        for a in output["shift_plan"]["shift_assignments"]
-        if a.get("source") == "MODEL"
-    ]
-    print(f"Assigned {len(assigned_pairs)} shifts by model, e.g.:", assigned_pairs[:10])
