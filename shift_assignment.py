@@ -1,6 +1,4 @@
 import json
-from typing import Optional
-
 import pandas as pd
 
 from utils import (
@@ -12,10 +10,10 @@ from utils import (
     assign_target_period,
     get_feature_importance_dict,
 )
-from visualize_output_plan import ensure_dir, render_visualizations
+from visualize_output_plan import ensure_dir
 
 
-def _build_assigned_output_final_only(report: dict) -> dict:
+def build_assignment_output(report: dict) -> dict:
 
     assigned = []
     for s in report.get("shifts", []):
@@ -23,7 +21,6 @@ def _build_assigned_output_final_only(report: dict) -> dict:
         if not chosen:
             continue
         cands = s.get("candidatesAfterFinalScoreOnly") or []
-        # Normalize and sort by final_score desc
         cands = [
             {"userId": c["userId"], "final_score": float(c.get("final_score", 0.0))}
             for c in cands
@@ -38,30 +35,25 @@ def _build_assigned_output_final_only(report: dict) -> dict:
 
 def run_pipeline(
     planning_request_complete_path: str,
-    visualization_mode: bool = False,
-    output_dir: str = "output_report",
+    output_dir: str = "output/output_job.json",
 ):
     with open(planning_request_complete_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Historical
     hist_shifts_df, assignments_df = adapt_past_plans_to_frames(data)
     if hist_shifts_df.empty or assignments_df.empty:
         raise ValueError("No historical data found. Ensure past_shift_plans contain shifts and shift_assignments.")
 
-    # Target
     target_shifts, shift_index, users_by_id, customer_tz = adapt_target_plan_to_frames(data)
     if not target_shifts:
         raise ValueError("No target shifts found in shift_plan.shifts.")
 
     users_df = pd.DataFrame(list(users_by_id.values()))
 
-    # Stats and training
     stats_by_user_ctx = collect_history_stats(hist_shifts_df, assignments_df, users_df, lam=0.85)
     train_df = build_training_data(hist_shifts_df, assignments_df, users_df, stats_by_user_ctx, k_neg_per_pos=5)
     model, iso_cal, feats, (X_val, y_val) = train_and_calibrate_with_val(train_df)
 
-    # Assign target (caps are taken from employees' timed_properties inside assign_target_period)
     result, report = assign_target_period(
         target_shifts, users_by_id, shift_index,
         model, iso_cal, feats, stats_by_user_ctx,
@@ -76,7 +68,6 @@ def run_pipeline(
     print("Missing shiftIds in history:", len(set(assignments_df["shiftId"]) - set(hist_shifts_df["id"])))
     print(hist_shifts_df[["unit", "shiftType", "weekday"]].drop_duplicates().shape)
 
-    # Write back assignments into shift_plan.shift_assignments
     target_shift_ids = {int(s["id"]) for s in data["shift_plan"].get("shifts", [])}
     existing = data["shift_plan"].get("shift_assignments") or []
     kept = [a for a in existing if int(a["shift_id"]) not in target_shift_ids]
@@ -84,28 +75,13 @@ def run_pipeline(
         kept.append({"shift_id": int(sid), "employee_uuid": uid, "source": "MODEL"})
     data["shift_plan"]["shift_assignments"] = kept
 
-    # Visualization (optional)
-    if visualization_mode:
-        ensure_dir(output_dir)
-        viz = render_visualizations(
-            model, iso_cal, feats, X_val, y_val, report,
-            target_shifts_count=len(target_shifts),
-            output_dir=output_dir, sample_topk_shifts=6
-        )
-        data["reportHtml"] = viz["html"]
-        print(f"Visualization written to: {viz['html']}")
-
-    # Attach full report to return value (for diagnostics/UI)
     data["assignmentReport"] = report
 
-    # Build and persist the compact output (final_score only)
-    compact = _build_assigned_output_final_only(report)
+    compact = build_assignment_output(report)
 
     ensure_dir("output")
-    with open("output/output_job.json", "w", encoding="utf-8") as f:
+    with open(output_dir, "w", encoding="utf-8") as f:
         json.dump(compact, f, indent=2, ensure_ascii=False)
-    print("Wrote compact output with final scores to: output/output_job.json")
+    print("Wrote output with scores to: output/output_job.json")
 
     return data
-
-
