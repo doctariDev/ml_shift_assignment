@@ -44,7 +44,7 @@ def train_model(
 
     users_df = pd.DataFrame(list(users_by_id.values()))
     stats_by_user_ctx = collect_history_stats(
-        hist_shifts_df, assignments_df, users_df, lam=recency_weighting
+        hist_shifts_df, assignments_df, lam=recency_weighting
     )
     train_df = build_training_data(
         hist_shifts_df, assignments_df, users_df, stats_by_user_ctx, k_neg_per_pos=5
@@ -86,21 +86,19 @@ def evaluate_model(
     model,
     iso_cal,
     feats,
-    stats_by_user_ctx,
     planning_request_complete_path: str,
-    output_dir: str = "output/eval_output_job.json",
+    output_dir: str = "output/assignment_scores.json",
 ):
-    """
-    Evaluates the model using assign_target_period (supporting constrained and unconstrained scoring).
-    - Generates results for shifts with constrained and unconstrained scores.
-    - Writes compact JSON output.
-    """
     with open(planning_request_complete_path, encoding="utf-8") as f:
         data = json.load(f)
 
     target_shifts, shift_index, users_by_id, customer_tz = adapt_target_plan_to_frames(data)
 
-    _, report = assign_target_period(
+    hist_shifts_df, assignments_df = adapt_past_plans_to_frames(data)
+
+    stats_by_user_ctx = collect_history_stats(hist_shifts_df, assignments_df)
+
+    scores = assign_target_period(
         target_shifts=target_shifts,
         users_by_id=users_by_id,
         shift_index=shift_index,
@@ -112,28 +110,9 @@ def evaluate_model(
         top_k=5
     )
 
-    print("Test")
-
-    results = report["shifts"]
-
-    compact = {"shifts": []}
-
-    for shift in results:
-        shift_id = shift["shiftId"]
-
-        constrained_candidates = shift.get("candidatesAfterFinalScoreOnly", [])
-        unconstrained_candidates = shift.get("unconstrainedCandidatesAfterFinalScoreOnly", [])
-
-        compact["shifts"].append({
-            "shiftId": shift_id,
-            "constrainedCandidates": constrained_candidates,
-            "unconstrainedCandidates": unconstrained_candidates
-        })
-
-
     ensure_dir("output")
     with open(output_dir, "w", encoding="utf-8") as f:
-        json.dump(compact, f, indent=2, ensure_ascii=False)
+        json.dump(scores, f, indent=2, ensure_ascii=False)
     print(f"Wrote output with scores to: {output_dir}")
 
 

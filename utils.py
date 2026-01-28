@@ -9,6 +9,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.isotonic import IsotonicRegression
 from sklearn.metrics import roc_auc_score, brier_score_loss, average_precision_score
 import warnings
+import os
+import joblib
 
 warnings.filterwarnings("ignore")
 
@@ -193,7 +195,6 @@ def recency_weight(ts: datetime, now: datetime, lam=0.85, unit="week") -> float:
 
 def collect_history_stats(hist_shifts_df: pd.DataFrame,
     assignments_df: pd.DataFrame,
-    users_df: pd.DataFrame,
     lam: float = 0.85) -> Dict[str, Dict[Tuple, Dict[str, float]]]:
     if hist_shifts_df.empty:
         return {}
@@ -550,23 +551,12 @@ def assign_target_period(
     fairness_opt_out_hard_cap_delta_hours: Optional[float] = None,
     customer_tz: Optional[str] = None,
     top_k: int = 5
-) -> Tuple[Dict[int, str], Dict[str, Any]]:
-    assigned_by_user: Dict[str, List[int]] = defaultdict(list)
-    assigned_hours_by_user_global: Dict[str, float] = defaultdict(float)
-    assigned_hours_by_user_week: Dict[Tuple[str, str], float] = defaultdict(float)
-    all_assignments_by_user: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+) -> Dict[int, Dict[str, List[Dict[str, float]]]]:
 
-    result = {}
-    report = {
-        "shifts": [],
-        "usersSummary": {},
-        "modelSummary": {},
-        "runConfig": {
-            "fairness_weekly_soft_cap_hours_default": fairness_weekly_soft_cap_hours,
-            "fairness_opt_out_hard_cap_delta_hours_default": fairness_opt_out_hard_cap_delta_hours,
-            "top_k": top_k
-        }
-    }
+    from collections import defaultdict
+    from datetime import datetime
+
+    assigned_hours_by_user_week: Dict[Tuple[str, str], float] = defaultdict(float)
 
     def week_key_from_date_str(dstr: str) -> str:
         d = to_date(dstr)
@@ -588,283 +578,113 @@ def assign_target_period(
 
     target_shifts = sorted(target_shifts, key=lambda x: (x["date"], x["start"]))
 
+    output: Dict[int, Dict[str, List[Dict[str, float]]]] = {}
+
     for s in target_shifts:
         sid = s["id"]
+        output[sid] = {"constrained": [], "unconstrained": []}
 
-        # Preserve preplanned assignments
         preplanned_user = s.get("preplannedUserId")
-        if preplanned_user:
-            result[sid] = preplanned_user
-            report["shifts"].append({
-                "shiftId": sid,
-                "meta": {
-                    "unit_tags": s["unit_tags"], "shiftType": s["shiftType"], "weekday": s["weekday"],
-                    "date": s["date"], "start": s["start"], "end": s["end"],
-                    "requiredQualifications": s.get("requiredQualifications", []),
-                    "isHoliday": int(s.get("isHoliday", 0))
-                },
-                "preplannedUserId": preplanned_user,
-                "candidatesBeforeFilters": 0,
-                "filteredOut": [],
-                "candidatesAfterFilters": [],
-                "topCandidates": [],
-                "candidatesAfterFinalScoreOnly": [],
-                "unconstrainedCandidatesAfterFinalScoreOnly": [],
-                "chosen": {
-                    "userId": preplanned_user,
-                    "score_after_penalty": None,
-                    "base_score": None,
-                    "fairness_penalty": None,
-                    "week_key": None,
-                    "week_hours_after": None
-                },
-                "decisionPath": ["skipped_due_to_existing_assignment"],
-                "notes": ["skipped_scoring_due_to_existing_assignment"]
-            })
-            continue
-
-        explanation = {
-            "shiftId": sid,
-            "meta": {
-                "unit_tags": s["unit_tags"], "shiftType": s["shiftType"], "weekday": s["weekday"],
-                "date": s["date"], "start": s["start"], "end": s["end"],
-                "requiredQualifications": s.get("requiredQualifications", []),
-                "isHoliday": int(s.get("isHoliday", 0))
-            },
-            "preplannedUserId": s.get("preplannedUserId"),
-            "candidatesBeforeFilters": [],
-            "filteredOut": [],
-            "candidatesAfterFilters": [],
-            "topCandidates": [],
-            "candidatesAfterFinalScoreOnly": [],
-            "unconstrainedCandidatesAfterFinalScoreOnly": [],
-            "chosen": None,
-            "decisionPath": [],
-            "notes": []
-        }
-
-        explanation["decisionPath"].append("candidate_generation")
         all_user_ids = list(users_by_id.keys())
-
         unconstrained_candidates = [uid for uid in all_user_ids if uid != preplanned_user]
 
-        if not explanation["candidatesAfterFilters"]:
-            explanation["notes"].append("no feasible candidates (constrained)")
-            explanation["decisionPath"].append("scoring_unconstrained")
-            unconstrained_ranked = score_candidates_for_shift(
-                s, unconstrained_candidates, users_by_id, stats_by_user_ctx, model, iso_calibrator, features
-            )
-            ctx = (s["unit_tags"], s["shiftType"], s["weekday"])
-            stats_for_uid_uc = {uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {}) for uid, _ in unconstrained_ranked}
+        ctx = (s["unit_tags"], s["shiftType"], s["weekday"])
+        is_holiday = int(s.get("isHoliday", 0)) == 1
 
-            beta1, beta2, beta3 = 0.10, 0.05, 0.05
-            C, L = 5.0, 60.0
-            is_holiday = int(s.get("isHoliday", 0)) == 1
-            holiday_weight = 0.08
+        try:
+            hrs = (
+                datetime.combine(to_date(s["date"]), parse_time_simple(s["end"])) -
+                datetime.combine(to_date(s["date"]), parse_time_simple(s["start"]))
+            ).seconds / 3600.0
+        except Exception:
+            hrs = 8.0
 
-            def blended_score(uid: str, p: float) -> float:
-                st = stats_for_uid_uc.get(uid, {}) or {}
-                rw = float(st.get("rw_assign_rate", 0.0))
-                rw_hol = float(st.get("rw_assign_rate_holiday", 0.0))
-                cnt = float(st.get("count_assigned", 0.0))
-                last_days = float(st.get("last_assigned_days", 9999.0))
-                cnt_norm = min(cnt / C, 1.0)
-                recency_bonus = max(0.0, 1.0 - min(last_days, L) / L)
-                holiday_bonus = holiday_weight * rw_hol if is_holiday else 0.0
-                return float(p) + beta1 * rw + beta2 * cnt_norm + beta3 * recency_bonus + holiday_bonus
+        wk = week_key_from_date_str(s["date"])
 
-            try:
-                hrs = (datetime.combine(to_date(s["date"]), parse_time_simple(s["end"])) -
-                       datetime.combine(to_date(s["date"]), parse_time_simple(s["start"]))).seconds / 3600.0
-            except Exception:
-                hrs = 8.0
-            wk = week_key_from_date_str(s["date"])
-
-            for uid, p in unconstrained_ranked:
-                urec = users_by_id.get(uid, {})
-                tp = (urec.get("timed_properties") or [{}])[0]
-                soft_cap_uid = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
-                hard_cap_uid = tp.get("max_weekly_hours", None)
-                if hard_cap_uid is None and fairness_opt_out_hard_cap_delta_hours is not None:
-                    hard_cap_uid = soft_cap_uid + fairness_opt_out_hard_cap_delta_hours
-
-                current_week_hours = assigned_hours_by_user_week[(uid, wk)]
-                new_hours = current_week_hours + hrs
-
-                base = blended_score(uid, p)
-                pen = fairness_penalty(new_hours, soft_cap_uid, hard_cap_uid)
-                final_uc = base - pen
-                explanation["unconstrainedCandidatesAfterFinalScoreOnly"].append({
-                    "userId": uid,
-                    "final_score": float(final_uc)
-                })
-            explanation["unconstrainedCandidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
-            report["shifts"].append(explanation)
-            continue
-
-        explanation["decisionPath"].append("scoring_constrained")
-        ranked = score_candidates_for_shift(
-            s, explanation["candidatesAfterFilters"], users_by_id, stats_by_user_ctx, model, iso_calibrator, features
+        # -------------------------
+        # UNCONSTRAINED SCORING
+        # -------------------------
+        unconstrained_ranked = score_candidates_for_shift(
+            s, unconstrained_candidates, users_by_id,
+            stats_by_user_ctx, model, iso_calibrator, features
         )
 
-        if not ranked:
-            explanation["notes"].append("scoring produced no results (constrained)")
-            explanation["decisionPath"].append("scoring_unconstrained")
-            unconstrained_ranked = score_candidates_for_shift(
-                s, unconstrained_candidates, users_by_id, stats_by_user_ctx, model, iso_calibrator, features
-            )
-            explanation["unconstrainedCandidatesAfterFinalScoreOnly"] = [
-                {"userId": uid, "final_score": float(p)} for uid, p in sorted(unconstrained_ranked, key=lambda t: t[1], reverse=True)
-            ]
-            report["shifts"].append(explanation)
-            continue
-
-        ctx = (s["unit_tags"], s["shiftType"], s["weekday"])
-        stats_for_uid = {uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {}) for uid, _ in ranked}
-
-        top_list_report = sorted(ranked, key=lambda t: t[1], reverse=True)[:top_k]
-        enriched_top = []
-        for uid, p in top_list_report:
-            sstats = stats_for_uid.get(uid, {}) or {}
-            urec = users_by_id.get(uid, {})
-            enriched_top.append({
-                "userId": uid,
-                "p_calibrated": float(p),
-                "rw_assign_rate": sstats.get("rw_assign_rate", 0.0),
-                "rw_assign_rate_holiday": sstats.get("rw_assign_rate_holiday", 0.0),
-                "count_assigned": int(sstats.get("count_assigned", 0)),
-                "count_assigned_holiday": int(sstats.get("count_assigned_holiday", 0)),
-                "last_assigned_days": float(sstats.get("last_assigned_days", 9999.0)),
-                "userFTE": (urec.get("timed_properties", [{}])[0].get("weekly_hours", 40.0))/40.0
-            })
-        explanation["topCandidates"] = enriched_top
+        stats_uc = {
+            uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {})
+            for uid, _ in unconstrained_ranked
+        }
 
         beta1, beta2, beta3 = 0.10, 0.05, 0.05
         C, L = 5.0, 60.0
-        is_holiday = int(s.get("isHoliday", 0)) == 1
         holiday_weight = 0.08
 
-        def blended_score(uid: str, p: float) -> float:
-            st = stats_for_uid.get(uid, {}) or {}
-            rw = float(st.get("rw_assign_rate", 0.0))
-            rw_hol = float(st.get("rw_assign_rate_holiday", 0.0))
-            cnt = float(st.get("count_assigned", 0.0))
-            last_days = float(st.get("last_assigned_days", 9999.0))
-            cnt_norm = min(cnt / C, 1.0)
-            recency_bonus = max(0.0, 1.0 - min(last_days, L) / L)
-            holiday_bonus = holiday_weight * rw_hol if is_holiday else 0.0
-            return float(p) + beta1 * rw + beta2 * cnt_norm + beta3 * recency_bonus + holiday_bonus
+        def blended_uc(uid: str, p: float) -> float:
+            st = stats_uc.get(uid, {}) or {}
+            cnt_norm = min(float(st.get("count_assigned", 0.0)) / C, 1.0)
+            recency = max(0.0, 1.0 - min(float(st.get("last_assigned_days", 9999)), L) / L)
+            holiday = holiday_weight * float(st.get("rw_assign_rate_holiday", 0.0)) if is_holiday else 0.0
+            return float(p) + beta1 * float(st.get("rw_assign_rate", 0.0)) + beta2 * cnt_norm + beta3 * recency + holiday
 
-        explanation["decisionPath"].append("greedy_pick_with_soft_fairness_and_employee_opt_out_cap")
+        for uid, p in unconstrained_ranked:
+            urec = users_by_id.get(uid, {})
+            tp = (urec.get("timed_properties") or [{}])[0]
+            soft = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
+            hard = tp.get("max_weekly_hours")
+            if hard is None and fairness_opt_out_hard_cap_delta_hours is not None:
+                hard = soft + fairness_opt_out_hard_cap_delta_hours
 
-        try:
-            hrs = (datetime.combine(to_date(s["date"]), parse_time_simple(s["end"])) -
-                   datetime.combine(to_date(s["date"]), parse_time_simple(s["start"]))).seconds / 3600.0
-        except Exception:
-            hrs = 8.0
-        wk = week_key_from_date_str(s["date"])
+            new_hours = assigned_hours_by_user_week[(uid, wk)] + hrs
+            final = blended_uc(uid, p) - fairness_penalty(new_hours, soft, hard)
 
-        scored: List[Tuple[str, float, float, float, float]] = []
-        fairness_skips_hardcap = []
+            output[sid]["unconstrained"].append({
+                "userId": uid,
+                "final_score": float(final)
+            })
+
+        output[sid]["unconstrained"].sort(key=lambda d: d["final_score"], reverse=True)
+
+        # -------------------------
+        # CONSTRAINED SCORING
+        # -------------------------
+        ranked = score_candidates_for_shift(
+            s, [], users_by_id,
+            stats_by_user_ctx, model, iso_calibrator, features
+        )
+
+        stats_c = {
+            uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {})
+            for uid, _ in ranked
+        }
+
+        def blended_c(uid: str, p: float) -> float:
+            st = stats_c.get(uid, {}) or {}
+            cnt_norm = min(float(st.get("count_assigned", 0.0)) / C, 1.0)
+            recency = max(0.0, 1.0 - min(float(st.get("last_assigned_days", 9999)), L) / L)
+            holiday = holiday_weight * float(st.get("rw_assign_rate_holiday", 0.0)) if is_holiday else 0.0
+            return float(p) + beta1 * float(st.get("rw_assign_rate", 0.0)) + beta2 * cnt_norm + beta3 * recency + holiday
 
         for uid, p in ranked:
             urec = users_by_id.get(uid, {})
             tp = (urec.get("timed_properties") or [{}])[0]
-            soft_cap_uid = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
-            hard_cap_uid = tp.get("max_weekly_hours", None)
-            if hard_cap_uid is None and fairness_opt_out_hard_cap_delta_hours is not None:
-                hard_cap_uid = soft_cap_uid + fairness_opt_out_hard_cap_delta_hours
+            soft = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
+            hard = tp.get("max_weekly_hours")
+            if hard is None and fairness_opt_out_hard_cap_delta_hours is not None:
+                hard = soft + fairness_opt_out_hard_cap_delta_hours
 
-            current_week_hours = assigned_hours_by_user_week[(uid, wk)]
-            new_hours = current_week_hours + hrs
-
-            if hard_cap_uid is not None and new_hours > hard_cap_uid:
-                fairness_skips_hardcap.append({
-                    "userId": uid, "reason": "opt_out_hard_cap", "week": wk,
-                    "current_week_hours": float(current_week_hours),
-                    "hard_cap_uid": float(hard_cap_uid)
-                })
+            new_hours = assigned_hours_by_user_week[(uid, wk)] + hrs
+            if hard is not None and new_hours > hard:
                 continue
 
-            base = blended_score(uid, p)
-            pen = fairness_penalty(new_hours, soft_cap_uid, hard_cap_uid)
-            final = base - pen
-            explanation["candidatesAfterFinalScoreOnly"].append({
+            final = blended_c(uid, p) - fairness_penalty(new_hours, soft, hard)
+
+            output[sid]["constrained"].append({
                 "userId": uid,
                 "final_score": float(final)
             })
-            scored.append((uid, final, base, pen, float(new_hours)))
 
-        explanation["decisionPath"].append("scoring_unconstrained")
-        unconstrained_ranked = score_candidates_for_shift(
-            s, unconstrained_candidates, users_by_id, stats_by_user_ctx, model, iso_calibrator, features
-        )
-        stats_for_uid_uc = {uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {}) for uid, _ in unconstrained_ranked}
-        def blended_score_uc(uid: str, p: float) -> float:
-            st = stats_for_uid_uc.get(uid, {}) or {}
-            rw = float(st.get("rw_assign_rate", 0.0))
-            rw_hol = float(st.get("rw_assign_rate_holiday", 0.0))
-            cnt = float(st.get("count_assigned", 0.0))
-            last_days = float(st.get("last_assigned_days", 9999.0))
-            cnt_norm = min(cnt / C, 1.0)
-            recency_bonus = max(0.0, 1.0 - min(last_days, L) / L)
-            holiday_bonus = holiday_weight * rw_hol if is_holiday else 0.0
-            return float(p) + beta1 * rw + beta2 * cnt_norm + beta3 * recency_bonus + holiday_bonus
-        for uid, p in unconstrained_ranked:
-            urec = users_by_id.get(uid, {})
-            tp = (urec.get("timed_properties") or [{}])[0]
-            soft_cap_uid = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
-            hard_cap_uid = tp.get("max_weekly_hours", None)
-            if hard_cap_uid is None and fairness_opt_out_hard_cap_delta_hours is not None:
-                hard_cap_uid = soft_cap_uid + fairness_opt_out_hard_cap_delta_hours
-            current_week_hours = assigned_hours_by_user_week[(uid, wk)]
-            new_hours = current_week_hours + hrs
-            base_uc = blended_score_uc(uid, p)
-            pen_uc = fairness_penalty(new_hours, soft_cap_uid, hard_cap_uid)
-            final_uc = base_uc - pen_uc
-            explanation["unconstrainedCandidatesAfterFinalScoreOnly"].append({
-                "userId": uid,
-                "final_score": float(final_uc)
-            })
+        output[sid]["constrained"].sort(key=lambda d: d["final_score"], reverse=True)
 
-        if not scored:
-            explanation["notes"].append("no candidate within employee opt-out hard cap (constrained)")
-            if fairness_skips_hardcap:
-                explanation["notes"].append({"hard_cap_skipped": fairness_skips_hardcap})
-            explanation["unconstrainedCandidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
-            report["shifts"].append(explanation)
-            continue
-
-        scored_sorted = sorted(scored, key=lambda t: t[1], reverse=True)
-        chosen, final_score, base_score, penalty_applied, final_week_hours = scored_sorted[0]
-
-        result[sid] = chosen
-        assigned_by_user[chosen].append(sid)
-        assigned_hours_by_user_week[(chosen, wk)] += hrs
-        assigned_hours_by_user_global[chosen] += hrs
-        all_assignments_by_user[chosen].append(s)
-
-        explanation["chosen"] = {
-            "userId": chosen,
-            "score_after_penalty": float(final_score),
-            "base_score": float(base_score),
-            "fairness_penalty": float(penalty_applied),
-            "week_key": wk,
-            "week_hours_after": float(final_week_hours)
-        }
-        if fairness_skips_hardcap:
-            explanation["notes"].append({"hard_cap_skipped": fairness_skips_hardcap})
-
-        explanation["candidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
-        explanation["unconstrainedCandidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
-        report["shifts"].append(explanation)
-
-    for uid in users_by_id.keys():
-        report["usersSummary"][uid] = {
-            "totalHours": float(assigned_hours_by_user_global.get(uid, 0.0)),
-            "assignedCount": len(assigned_by_user.get(uid, []))
-        }
-    return result, report
+    return output
 
 # =========== SAVING & LOADING MODELS ===========
 
@@ -915,9 +735,6 @@ def build_assigned_output(report: dict) -> dict:
             "unconstrainedCandidates": unc
         })
     return {"shifts": shifts}
-
-
-import os
 
 def assign_top_candidates_to_shifts(base_json_path: str,
                                     model_output_path: str,
