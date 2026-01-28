@@ -4,39 +4,85 @@ from datetime import datetime, date as date_cls, time as time_cls
 import numpy as np
 import pandas as pd
 from collections import defaultdict
+import lightgbm as lgb
 from sklearn.model_selection import train_test_split
 from sklearn.isotonic import IsotonicRegression
 from sklearn.metrics import roc_auc_score, brier_score_loss, average_precision_score
-import lightgbm as lgb
 import warnings
+import os
+import joblib
 
 warnings.filterwarnings("ignore")
 
+# ======== GLOBAL FEATURE LISTS =========
+
+DEFAULT_FEATURES = [
+    "unit_tags", "workplace_id", "shiftType", "weekday", "hour", "duration",
+    "isHoliday", "rw_assign_rate", "count_assigned", "last_assigned_days", "userFTE",
+    "weeks_since_last_ctx_wd", "worked_last_1w_ctx_wd", "worked_last_2w_ctx_wd", "freq_ctx_wd_8w"
+]
+DEFAULT_CAT_FEATURES = ["unit_tags", "workplace_id", "shiftType"]
+
 # =========================
-# Timezone helper
+# Util functions
 # =========================
-try:
-    from zoneinfo import ZoneInfo
-except Exception:
-    ZoneInfo = None
 
 def dt_parse_iso(s: str, tz: Optional[str]) -> datetime:
     dt = pd.to_datetime(s)
-    if tz and ZoneInfo:
-        try:
-            if dt.tzinfo is None:
-                dt = dt.tz_localize("UTC")
-            dt = dt.tz_convert(ZoneInfo(tz))
-        except Exception:
-            try:
-                dt = pd.to_datetime(s).to_pydatetime()
-            except Exception:
-                pass
     return dt.to_pydatetime()
 
-# =========================
-# Holidays: day-based matching
-# =========================
+def parse_time_simple(tstr: str) -> time_cls:
+    parts = list(map(int, tstr.split(":")))
+    if len(parts) == 2:
+        return time_cls(parts[0], parts[1])
+    return time_cls(parts[0], parts[1], parts[2])
+
+def to_date(obj) -> Optional[date_cls]:
+    if obj is None:
+        return None
+    if isinstance(obj, str):
+        try:
+            return datetime.fromisoformat(obj.replace("Z", "+00:00")).date()
+        except Exception:
+            return pd.to_datetime(obj).date()
+    if isinstance(obj, datetime):
+        return obj.date()
+    if hasattr(obj, "to_pydatetime"):
+        return obj.to_pydatetime().date()
+    if hasattr(obj, "date"):
+        return obj.date()
+    if isinstance(obj, date_cls):
+        return obj
+    raise TypeError(f"Unsupported date type: {type(obj)}")
+
+def iso_week_index_from_date(d: date_cls) -> int:
+    y, w, _ = d.isocalendar()
+    return int(y) * 100 + int(w)
+
+def rolling_weeks_freq(weeks_sorted: list[int], current_week_idx: int, window: int = 8) -> float:
+    if not weeks_sorted:
+        return 0.0
+    lo = current_week_idx - window
+    cnt = sum(1 for wk in weeks_sorted if lo <= wk < current_week_idx)
+    return cnt / float(window)
+
+def user_qualified(user: Dict[str, Any], required_quals: List[int]) -> bool:
+    uq = {q["id"] for q in user.get("qualifications", [])}
+    return set(required_quals or []).issubset(uq)
+
+def conflicts_with_parallel(shift: Dict[str, Any], user_id: str, assigned_by_user: Dict[str, List[int]], shift_index: Dict[int, Dict[str, Any]]) -> bool:
+    for sid in assigned_by_user.get(user_id, []):
+        other = shift_index.get(sid)
+        if not other:
+            continue
+        if shift["date"] == other["date"]:
+            s_start = parse_time_simple(shift["start"])
+            s_end   = parse_time_simple(shift["end"])
+            o_start = parse_time_simple(other["start"])
+            o_end   = parse_time_simple(other["end"])
+            if not (s_end <= o_start or o_end <= s_start):
+                return True
+    return False
 
 def parse_holiday_days(holiday_list: List[Dict[str, Any]]) -> set:
     days = set()
@@ -59,107 +105,13 @@ def is_holiday_day(shift_start_dt: datetime, holiday_days: set) -> bool:
         return False
 
 # =========================
-# Core utilities
-# =========================
-
-def get_feature_importance_dict(model, features):
-    imp_gain = model.feature_importance(importance_type="gain")
-    return sorted([{"feature": f, "gain": float(g)} for f, g in zip(features, imp_gain)], key=lambda x: -x["gain"])
-
-def parse_time_simple(tstr: str) -> time_cls:
-    parts = list(map(int, tstr.split(":")))
-    if len(parts) == 2:
-        return time_cls(parts[0], parts[1])
-    return time_cls(parts[0], parts[1], parts[2])
-
-def to_date(obj) -> Optional[date_cls]:
-    if obj is None:
-        return None
-    if isinstance(obj, str):
-        try:
-            return datetime.fromisoformat(obj.replace("Z", "+00:00")).date()
-        except Exception:
-            return pd.to_datetime(obj).date()
-    if isinstance(obj, datetime):
-        return obj.date()
-    if hasattr(obj, "to_pydatetime"):
-        return obj.to_pydatetime().date()
-    if hasattr(obj, "date"):
-        try:
-            return obj.date()
-        except Exception:
-            pass
-    if isinstance(obj, date_cls):
-        return obj
-    raise TypeError(f"Unsupported date type: {type(obj)}")
-
-def in_date_range(date_obj, start: Optional[str], end: Optional[str]) -> bool:
-    d = to_date(date_obj)
-    if d is None:
-        return True
-    if start:
-        if d < to_date(start):
-            return False
-    if end:
-        if d > to_date(end):
-            return False
-    return True
-
-def iso_week_index_from_date(d: date_cls) -> int:
-    y, w, _ = d.isocalendar()
-    return int(y) * 100 + int(w)
-
-def rolling_weeks_freq(weeks_sorted: list[int], current_week_idx: int, window: int = 8) -> float:
-    if not weeks_sorted:
-        return 0.0
-    lo = current_week_idx - window
-    cnt = sum(1 for wk in weeks_sorted if lo <= wk < current_week_idx)
-    return cnt / float(window)
-
-# =========================
-# Hard constraints
-# =========================
-
-def user_qualified(user: Dict[str, Any], required_quals: List[int]) -> bool:
-    uq = {q["id"] for q in user.get("qualifications", [])}
-    return set(required_quals or []).issubset(uq)
-
-def user_active(user: Dict[str, Any], date_obj) -> bool:
-    return True
-
-def user_available_for_shift(user: Dict[str, Any], shift: Dict[str, Any], customer_tz: Optional[str]) -> bool:
-    return True
-
-def conflicts_with_parallel(shift: Dict[str, Any], user_id: str, assigned_by_user: Dict[str, List[int]], shift_index: Dict[int, Dict[str, Any]]) -> bool:
-    for sid in assigned_by_user.get(user_id, []):
-        other = shift_index.get(sid)
-        if not other:
-            continue
-        if shift["date"] == other["date"]:
-            s_start = parse_time_simple(shift["start"])
-            s_end   = parse_time_simple(shift["end"])
-            o_start = parse_time_simple(other["start"])
-            o_end   = parse_time_simple(other["end"])
-            if not (s_end <= o_start or o_end <= s_start):
-                return True
-    return False
-
-def conflicts_with_exceptions(shift: Dict[str, Any], user_id: str, all_assignments_by_user: Dict[str, List[Dict[str, Any]]]) -> bool:
-    return False
-
-def negative_wish(shift: Dict[str, Any], user_id: str) -> bool:
-    return False
-
-def positive_wishers(shift: Dict[str, Any]) -> List[str]:
-    return []
-
-# =========================
 # Adapters
 # =========================
 
 def adapt_past_plans_to_frames(data: Dict[str, Any]) -> Tuple[pd.DataFrame, pd.DataFrame]:
     past_plans = data.get("past_shift_plans", []) or []
     default_tz = ((data.get("shift_plan") or {}).get("customer") or {}).get("zone_id")
+
 
     shift_rows = []
     asg_rows = []
@@ -176,7 +128,8 @@ def adapt_past_plans_to_frames(data: Dict[str, Any]) -> Tuple[pd.DataFrame, pd.D
 
             shift_rows.append({
                 "id": sid,
-                "unit": str(sh.get("workplace_id")),
+                "unit_tags": str(sh.get("unit_tags")),
+                "workplace_id": str(sh.get("workplace_id")),  
                 "shiftType": str(sh.get("shift_card_id") or "GEN"),
                 "weekday": int(start_dt_local.weekday()),
                 "date": start_dt_local.date().isoformat(),
@@ -188,14 +141,15 @@ def adapt_past_plans_to_frames(data: Dict[str, Any]) -> Tuple[pd.DataFrame, pd.D
         for a in p.get("shift_assignments", []):
             asg_rows.append({"shiftId": int(a["shift_id"]), "userId": a["employee_uuid"]})
 
-    hist_shifts_df = pd.DataFrame(shift_rows)
-    assignments_df = pd.DataFrame(asg_rows)
+        hist_shifts_df = pd.DataFrame(shift_rows)
+        assignments_df = pd.DataFrame(asg_rows)
     return hist_shifts_df, assignments_df
 
 def adapt_target_plan_to_frames(data: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], Dict[int, Dict[str, Any]], Dict[str, Dict[str, Any]], Optional[str]]:
     sp = data["shift_plan"]
     customer_tz = (sp.get("customer") or {}).get("zone_id")
     holiday_days = parse_holiday_days(sp.get("public_holidays") or [])
+
 
     existing_by_shift = {}
     for a in (sp.get("shift_assignments") or []):
@@ -213,7 +167,8 @@ def adapt_target_plan_to_frames(data: Dict[str, Any]) -> Tuple[List[Dict[str, An
         is_hol = is_holiday_day(start_dt_local, holiday_days)
         target_shifts.append({
             "id": sid,
-            "unit": str(sh.get("workplace_id")),
+            "unit_tags": str(sh.get("unit_tags")),
+            "workplace_id": str(sh.get("workplace_id")),  
             "shiftType": str(sh.get("shift_card_id") or "GEN"),
             "weekday": int(start_dt_local.weekday()),
             "date": start_dt_local.date().isoformat(),
@@ -239,15 +194,15 @@ def recency_weight(ts: datetime, now: datetime, lam=0.85, unit="week") -> float:
     return lam ** k
 
 def collect_history_stats(hist_shifts_df: pd.DataFrame,
-                          assignments_df: pd.DataFrame,
-                          users_df: pd.DataFrame,
-                          lam: float = 0.85) -> Dict[str, Dict[Tuple, Dict[str, float]]]:
+    assignments_df: pd.DataFrame,
+    lam: float = 0.85) -> Dict[str, Dict[Tuple, Dict[str, float]]]:
     if hist_shifts_df.empty:
         return {}
     df = hist_shifts_df.copy()
     df["date"] = pd.to_datetime(df["date"])
     now = df["date"].max()
     now_dt = pd.to_datetime(now) if pd.notnull(now) else pd.Timestamp(datetime.utcnow())
+
 
     def _init():
         return {
@@ -261,14 +216,14 @@ def collect_history_stats(hist_shifts_df: pd.DataFrame,
 
     stats = defaultdict(lambda: defaultdict(_init))
 
-    df["context"] = df.apply(lambda r: (r["unit"], r["shiftType"], r["weekday"]), axis=1)
+    df["context"] = df.apply(lambda r: (r["unit_tags"], r["shiftType"], r["weekday"]), axis=1)
     context_by_shift = dict(zip(df["id"], df["context"]))
 
     if assignments_df.empty:
         return stats
 
-    merged = assignments_df.merge(df[["id", "unit", "shiftType", "weekday", "date", "isHoliday"]],
-                                  left_on="shiftId", right_on="id", how="left")
+    merged = assignments_df.merge(df[["id", "unit_tags", "shiftType", "weekday", "date", "isHoliday"]],
+                                left_on="shiftId", right_on="id", how="left")
     merged["date"] = pd.to_datetime(merged["date"])
 
     for _, row in merged.iterrows():
@@ -311,12 +266,14 @@ def collect_history_stats(hist_shifts_df: pd.DataFrame,
     return stats
 
 def build_training_data(hist_shifts_df: pd.DataFrame,
-                        assignments_df: pd.DataFrame,
-                        users_df: pd.DataFrame,
-                        stats_by_user_ctx: Dict[str, Dict[Tuple, Dict[str, float]]],
-                        k_neg_per_pos: int = 5) -> pd.DataFrame:
+    assignments_df: pd.DataFrame,
+    users_df: pd.DataFrame,
+    stats_by_user_ctx: Dict[str, Dict[Tuple, Dict[str, float]]],
+    k_neg_per_pos: int = 5) -> pd.DataFrame:
+
     if assignments_df.empty:
         raise ValueError("assignments_df is empty; need historical assignments to train.")
+
     shift_ids = set(assignments_df["shiftId"].unique())
     hist_shifts_df = hist_shifts_df[hist_shifts_df["id"].isin(shift_ids)].copy()
     hist_shifts_df = hist_shifts_df.sort_values(["date", "start"]).drop_duplicates(subset=["id"], keep="first")
@@ -347,15 +304,15 @@ def build_training_data(hist_shifts_df: pd.DataFrame,
         if sid not in shift_meta:
             continue
         sm = shift_meta[sid]
-        ctx = (sm["unit"], sm["shiftType"], sm["weekday"])
-        start_s = sm["start"]
-        end_s = sm["end"]
+        ctx = (sm.get("unit_tags"), sm.get("shiftType"), sm.get("weekday"))
+        start_s = sm.get("start", "08:00")
+        end_s = sm.get("end", "16:00")
         try:
             hour_val = int(str(start_s)[:2])
         except Exception:
             hour_val = 8
         try:
-            s_date = to_date(sm["date"])
+            s_date = to_date(sm.get("date"))
             duration_val = (datetime.combine(s_date, parse_time_simple(end_s)) -
                             datetime.combine(s_date, parse_time_simple(start_s))).seconds / 3600.0
         except Exception:
@@ -373,10 +330,13 @@ def build_training_data(hist_shifts_df: pd.DataFrame,
         for uid in pos_users:
             sstats = stats_by_user_ctx.get(uid, {}).get(ctx, {})
             urec = users_by_id.get(uid, {})
-            pfeats = periodic_feats(uid, ctx, sm["date"])
+            pfeats = periodic_feats(uid, ctx, sm.get("date"))
             rows.append({
                 "shiftId": sid, "userId": uid, "y": 1,
-                "unit": sm["unit"], "shiftType": sm["shiftType"], "weekday": sm["weekday"],
+                "unit_tags": sm.get("unit_tags"),
+                "workplace_id": sm.get("workplace_id"),  # <-- added here
+                "shiftType": sm.get("shiftType"),
+                "weekday": sm.get("weekday"),
                 "hour": hour_val, "duration": duration_val, "isHoliday": int(sm.get("isHoliday", 0)),
                 "rw_assign_rate": sstats.get("rw_assign_rate", 0.0),
                 "count_assigned": sstats.get("count_assigned", 0),
@@ -391,10 +351,13 @@ def build_training_data(hist_shifts_df: pd.DataFrame,
             for uid in neg_sample:
                 sstats = stats_by_user_ctx.get(uid, {}).get(ctx, {})
                 urec = users_by_id.get(uid, {})
-                pfeats = periodic_feats(uid, ctx, sm["date"])
+                pfeats = periodic_feats(uid, ctx, sm.get("date"))
                 rows.append({
                     "shiftId": sid, "userId": uid, "y": 0,
-                    "unit": sm["unit"], "shiftType": sm["shiftType"], "weekday": sm["weekday"],
+                    "unit_tags": sm.get("unit_tags"),
+                    "workplace_id": sm.get("workplace_id"),  # <-- added here
+                    "shiftType": sm.get("shiftType"),
+                    "weekday": sm.get("weekday"),
                     "hour": hour_val, "duration": duration_val, "isHoliday": int(sm.get("isHoliday", 0)),
                     "rw_assign_rate": sstats.get("rw_assign_rate", 0.0),
                     "count_assigned": sstats.get("count_assigned", 0),
@@ -406,27 +369,75 @@ def build_training_data(hist_shifts_df: pd.DataFrame,
     df = pd.DataFrame(rows)
     if df.empty:
         raise ValueError("Training data ended up empty. Check past_shift_plans.shift_assignments and ids.")
-    df["unit"] = df["unit"].astype("category")
+    df["unit_tags"] = df["unit_tags"].astype("category")
     df["shiftType"] = df["shiftType"].astype("category")
+    df["workplace_id"] = df["workplace_id"].astype("category")  # <-- Ensure this stays
     return df
 
 # =========================
 # Model training
 # =========================
 
-def train_and_calibrate_with_val(df: pd.DataFrame) -> Tuple[Any, Any, List[str], Tuple[pd.DataFrame, pd.Series]]:
-    features = [
-        "unit", "shiftType", "weekday", "hour", "duration", "isHoliday",
-        "rw_assign_rate", "count_assigned", "last_assigned_days", "userFTE",
-        "weeks_since_last_ctx_wd", "worked_last_1w_ctx_wd", "worked_last_2w_ctx_wd", "freq_ctx_wd_8w"
-    ]
+def train_lgb_full(
+    df: pd.DataFrame,
+    features: List[str] = DEFAULT_FEATURES,
+    cat_features: List[str] = DEFAULT_CAT_FEATURES,
+    params: dict = None,
+    num_boost_round: int = 500,
+    test_size: float = 0.25,
+    random_state: int = 42
+) -> Tuple[Any, Dict[str, List[str]], List[str], Tuple[pd.DataFrame, pd.Series]]:
+    """Trains a LightGBM model on the given DataFrame."""
+    X = df[features].copy()
+    y = df["y"].copy()
+    for c in cat_features:
+        X[c] = X[c].astype("category")
+
+    X_tr, X_val, y_tr, y_val = train_test_split(
+        X, y, test_size=test_size, random_state=random_state, stratify=y
+    )
+    #category_levels = capture_category_levels(X, cat_features)
+    lgb_train = lgb.Dataset(X_tr, label=y_tr, categorical_feature=cat_features, free_raw_data=False)
+
+    params = params or {
+        "objective": "binary",
+        "metric": ["auc", "binary_logloss"],
+        "learning_rate": 0.05,
+        "num_leaves": 31,
+        "feature_fraction": 0.9,
+        "bagging_fraction": 0.8,
+        "bagging_freq": 1,
+        "min_data_in_leaf": 50,
+        "verbosity": -1,
+        "seed": random_state,
+    }
+    booster = lgb.train(params, lgb_train, num_boost_round=num_boost_round)
+    return booster, features, (X_val, y_val)
+
+def calibrate_isotonic(
+    booster: Any,
+    X_val: pd.DataFrame,
+    y_val: pd.Series
+) -> Tuple[IsotonicRegression, dict]:
+    p_raw_val = booster.predict(X_val)
+    iso = IsotonicRegression(out_of_bounds="clip").fit(p_raw_val, y_val)
+    auc_val = roc_auc_score(y_val, p_raw_val)
+    ap_val = average_precision_score(y_val, p_raw_val)
+    brier = brier_score_loss(y_val, iso.predict(p_raw_val))
+    metrics = {"auc": float(auc_val), "ap": float(ap_val), "brier": float(brier)}
+    print(f"[Validation] AUC={auc_val:.3f} AP={ap_val:.3f} Brier={brier:.3f}")
+    return iso, metrics
+
+def continue_training(booster, df, num_additional_rounds=200, features=None, cat_features=None):
+    features = features or DEFAULT_FEATURES
+    cat_features = cat_features or DEFAULT_CAT_FEATURES
     X = df[features]
     y = df["y"]
-    cat_features = ["unit", "shiftType"]
-
-    X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
-    lgb_train = lgb.Dataset(X_tr, label=y_tr, categorical_feature=cat_features, free_raw_data=False)
-    params = {
+    for c in cat_features:
+        if X[c].dtype.name != "category":
+            X[c] = X[c].astype("category")
+    lgb_train = lgb.Dataset(X, label=y, categorical_feature=cat_features, free_raw_data=False)
+    params = booster.params if hasattr(booster, "params") else {
         "objective": "binary",
         "metric": ["auc", "binary_logloss"],
         "learning_rate": 0.05,
@@ -438,14 +449,30 @@ def train_and_calibrate_with_val(df: pd.DataFrame) -> Tuple[Any, Any, List[str],
         "verbosity": -1,
         "seed": 42
     }
-    model = lgb.train(params, lgb_train, num_boost_round=500)
-    p_raw_val = model.predict(X_val)
+    booster = lgb.train(
+        params,
+        lgb_train,
+        num_boost_round=num_additional_rounds,
+        init_model=booster
+    )
+    return booster
+
+def recalibrate(booster, df, features=None, cat_features=None):
+    features = features or DEFAULT_FEATURES
+    cat_features = cat_features or DEFAULT_CAT_FEATURES
+    X = df[features].copy()
+    y = df["y"].copy()
+    for c in cat_features:
+        X[c] = X[c].astype("category")
+    _, X_val, _, y_val = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
+    p_raw_val = booster.predict(X_val)
     iso = IsotonicRegression(out_of_bounds="clip").fit(p_raw_val, y_val)
     auc_val = roc_auc_score(y_val, p_raw_val)
     ap_val = average_precision_score(y_val, p_raw_val)
     brier = brier_score_loss(y_val, iso.predict(p_raw_val))
-    print(f"[Validation] AUC={auc_val:.3f} AP={ap_val:.3f} Brier={brier:.3f}")
-    return model, iso, features, (X_val, y_val)
+    print(f"[Recalibration] AUC={auc_val:.3f} AP={ap_val:.3f} Brier={brier:.3f}")
+    return iso
+
 
 # =========================
 # Scoring and assignment
@@ -456,7 +483,7 @@ def score_candidates_for_shift(shift: Dict[str, Any],
                                users_by_id: Dict[str, Dict[str, Any]],
                                stats_by_user_ctx: Dict[str, Dict[Tuple, Dict[str, float]]],
                                model, iso_calibrator, features: List[str]) -> List[Tuple[str, float]]:
-    ctx = (shift["unit"], shift["shiftType"], shift["weekday"])
+    ctx = (shift["unit_tags"], shift["workplace_id"], shift["shiftType"], shift["weekday"])
     try:
         hour = int(str(shift["start"])[:2])
     except Exception:
@@ -493,7 +520,9 @@ def score_candidates_for_shift(shift: Dict[str, Any],
         urec = users_by_id.get(uid, {})
         pfeats = periodic_feats_infer(uid, ctx, cur_date_str)
         rows.append({
-            "unit": shift["unit"], "shiftType": shift["shiftType"], "weekday": shift["weekday"],
+            "unit_tags": shift["unit_tags"], 
+            "workplace_id": shift["workplace_id"],
+            "shiftType": shift["shiftType"], "weekday": shift["weekday"],
             "hour": hour, "duration": duration, "isHoliday": isHoliday,
             "rw_assign_rate": s.get("rw_assign_rate", 0.0),
             "count_assigned": s.get("count_assigned", 0),
@@ -505,13 +534,14 @@ def score_candidates_for_shift(shift: Dict[str, Any],
     if not rows:
         return []
     X = pd.DataFrame(rows)
-    X["unit"] = X["unit"].astype("category")
+    X["unit_tags"] = X["unit_tags"].astype("category")
+    X["workplace_id"] = X["workplace_id"].astype("category")
     X["shiftType"] = X["shiftType"].astype("category")
     p_raw = model.predict(X[features])
     p = iso_calibrator.predict(p_raw)
     return list(zip(idx, p))
 
-def assign_target_period(
+def calculate_assignment_scores(
     target_shifts: List[Dict[str, Any]],
     users_by_id: Dict[str, Dict[str, Any]],
     shift_index: Dict[int, Dict[str, Any]],
@@ -521,23 +551,12 @@ def assign_target_period(
     fairness_opt_out_hard_cap_delta_hours: Optional[float] = None,
     customer_tz: Optional[str] = None,
     top_k: int = 5
-) -> Tuple[Dict[int, str], Dict[str, Any]]:
-    assigned_by_user: Dict[str, List[int]] = defaultdict(list)
-    assigned_hours_by_user_global: Dict[str, float] = defaultdict(float)
-    assigned_hours_by_user_week: Dict[Tuple[str, str], float] = defaultdict(float)
-    all_assignments_by_user: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+) -> Dict[int, Dict[str, List[Dict[str, float]]]]:
 
-    result = {}
-    report = {
-        "shifts": [],
-        "usersSummary": {},
-        "modelSummary": {},
-        "runConfig": {
-            "fairness_weekly_soft_cap_hours_default": fairness_weekly_soft_cap_hours,
-            "fairness_opt_out_hard_cap_delta_hours_default": fairness_opt_out_hard_cap_delta_hours,
-            "top_k": top_k
-        }
-    }
+    from collections import defaultdict
+    from datetime import datetime
+
+    assigned_hours_by_user_week: Dict[Tuple[str, str], float] = defaultdict(float)
 
     def week_key_from_date_str(dstr: str) -> str:
         d = to_date(dstr)
@@ -559,302 +578,141 @@ def assign_target_period(
 
     target_shifts = sorted(target_shifts, key=lambda x: (x["date"], x["start"]))
 
+    output: Dict[int, Dict[str, List[Dict[str, float]]]] = {}
+
     for s in target_shifts:
         sid = s["id"]
+        output[sid] = {"constrained": [], "unconstrained": []}
 
-        # Preserve preplanned assignments
         preplanned_user = s.get("preplannedUserId")
-        if preplanned_user:
-            result[sid] = preplanned_user
-            report["shifts"].append({
-                "shiftId": sid,
-                "meta": {
-                    "unit": s["unit"], "shiftType": s["shiftType"], "weekday": s["weekday"],
-                    "date": s["date"], "start": s["start"], "end": s["end"],
-                    "requiredQualifications": s.get("requiredQualifications", []),
-                    "isHoliday": int(s.get("isHoliday", 0))
-                },
-                "preplannedUserId": preplanned_user,
-                "candidatesBeforeFilters": 0,
-                "filteredOut": [],
-                "candidatesAfterFilters": [],
-                "topCandidates": [],
-                "candidatesAfterFinalScoreOnly": [],
-                "unconstrainedCandidatesAfterFinalScoreOnly": [],
-                "chosen": {
-                    "userId": preplanned_user,
-                    "score_after_penalty": None,
-                    "base_score": None,
-                    "fairness_penalty": None,
-                    "week_key": None,
-                    "week_hours_after": None
-                },
-                "decisionPath": ["skipped_due_to_existing_assignment"],
-                "notes": ["skipped_scoring_due_to_existing_assignment"]
-            })
-            continue
-
-        explanation = {
-            "shiftId": sid,
-            "meta": {
-                "unit": s["unit"], "shiftType": s["shiftType"], "weekday": s["weekday"],
-                "date": s["date"], "start": s["start"], "end": s["end"],
-                "requiredQualifications": s.get("requiredQualifications", []),
-                "isHoliday": int(s.get("isHoliday", 0))
-            },
-            "preplannedUserId": s.get("preplannedUserId"),
-            "positiveWishers": positive_wishers(s),
-            "candidatesBeforeFilters": [],
-            "filteredOut": [],
-            "candidatesAfterFilters": [],
-            "topCandidates": [],
-            "candidatesAfterFinalScoreOnly": [],
-            "unconstrainedCandidatesAfterFinalScoreOnly": [],
-            "chosen": None,
-            "decisionPath": [],
-            "notes": []
-        }
-
-        explanation["decisionPath"].append("candidate_generation")
         all_user_ids = list(users_by_id.keys())
-
-        for uid in all_user_ids:
-            reasons = []
-            user = users_by_id[uid]
-            if not user_qualified(user, s.get("requiredQualifications", [])):
-                reasons.append("not_qualified")
-            if not user_available_for_shift(user, s, customer_tz):
-                reasons.append("not_available")
-            if conflicts_with_parallel(s, uid, assigned_by_user, shift_index):
-                reasons.append("parallel_conflict")
-            if negative_wish(s, uid):
-                reasons.append("negative_wish")
-            if reasons:
-                explanation["filteredOut"].append({"userId": uid, "reasons": reasons})
-            else:
-                explanation["candidatesAfterFilters"].append(uid)
-        explanation["candidatesBeforeFilters"] = len(all_user_ids)
-
         unconstrained_candidates = [uid for uid in all_user_ids if uid != preplanned_user]
 
-        if not explanation["candidatesAfterFilters"]:
-            explanation["notes"].append("no feasible candidates (constrained)")
-            explanation["decisionPath"].append("scoring_unconstrained")
-            unconstrained_ranked = score_candidates_for_shift(
-                s, unconstrained_candidates, users_by_id, stats_by_user_ctx, model, iso_calibrator, features
-            )
-            ctx = (s["unit"], s["shiftType"], s["weekday"])
-            stats_for_uid_uc = {uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {}) for uid, _ in unconstrained_ranked}
+        ctx = (s["unit_tags"], s["shiftType"], s["weekday"])
+        is_holiday = int(s.get("isHoliday", 0)) == 1
 
-            beta1, beta2, beta3 = 0.10, 0.05, 0.05
-            C, L = 5.0, 60.0
-            is_holiday = int(s.get("isHoliday", 0)) == 1
-            holiday_weight = 0.08
+        try:
+            hrs = (
+                datetime.combine(to_date(s["date"]), parse_time_simple(s["end"])) -
+                datetime.combine(to_date(s["date"]), parse_time_simple(s["start"]))
+            ).seconds / 3600.0
+        except Exception:
+            hrs = 8.0
 
-            def blended_score(uid: str, p: float) -> float:
-                st = stats_for_uid_uc.get(uid, {}) or {}
-                rw = float(st.get("rw_assign_rate", 0.0))
-                rw_hol = float(st.get("rw_assign_rate_holiday", 0.0))
-                cnt = float(st.get("count_assigned", 0.0))
-                last_days = float(st.get("last_assigned_days", 9999.0))
-                cnt_norm = min(cnt / C, 1.0)
-                recency_bonus = max(0.0, 1.0 - min(last_days, L) / L)
-                holiday_bonus = holiday_weight * rw_hol if is_holiday else 0.0
-                return float(p) + beta1 * rw + beta2 * cnt_norm + beta3 * recency_bonus + holiday_bonus
+        wk = week_key_from_date_str(s["date"])
 
-            try:
-                hrs = (datetime.combine(to_date(s["date"]), parse_time_simple(s["end"])) -
-                       datetime.combine(to_date(s["date"]), parse_time_simple(s["start"]))).seconds / 3600.0
-            except Exception:
-                hrs = 8.0
-            wk = week_key_from_date_str(s["date"])
-
-            for uid, p in unconstrained_ranked:
-                urec = users_by_id.get(uid, {})
-                tp = (urec.get("timed_properties") or [{}])[0]
-                soft_cap_uid = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
-                hard_cap_uid = tp.get("max_weekly_hours", None)
-                if hard_cap_uid is None and fairness_opt_out_hard_cap_delta_hours is not None:
-                    hard_cap_uid = soft_cap_uid + fairness_opt_out_hard_cap_delta_hours
-
-                current_week_hours = assigned_hours_by_user_week[(uid, wk)]
-                new_hours = current_week_hours + hrs
-
-                base = blended_score(uid, p)
-                pen = fairness_penalty(new_hours, soft_cap_uid, hard_cap_uid)
-                final_uc = base - pen
-                explanation["unconstrainedCandidatesAfterFinalScoreOnly"].append({
-                    "userId": uid,
-                    "final_score": float(final_uc)
-                })
-            explanation["unconstrainedCandidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
-            report["shifts"].append(explanation)
-            continue
-
-        explanation["decisionPath"].append("scoring_constrained")
-        ranked = score_candidates_for_shift(
-            s, explanation["candidatesAfterFilters"], users_by_id, stats_by_user_ctx, model, iso_calibrator, features
+        # -------------------------
+        # UNCONSTRAINED SCORING
+        # -------------------------
+        unconstrained_ranked = score_candidates_for_shift(
+            s, unconstrained_candidates, users_by_id,
+            stats_by_user_ctx, model, iso_calibrator, features
         )
 
-        if not ranked:
-            explanation["notes"].append("scoring produced no results (constrained)")
-            explanation["decisionPath"].append("scoring_unconstrained")
-            unconstrained_ranked = score_candidates_for_shift(
-                s, unconstrained_candidates, users_by_id, stats_by_user_ctx, model, iso_calibrator, features
-            )
-            explanation["unconstrainedCandidatesAfterFinalScoreOnly"] = [
-                {"userId": uid, "final_score": float(p)} for uid, p in sorted(unconstrained_ranked, key=lambda t: t[1], reverse=True)
-            ]
-            report["shifts"].append(explanation)
-            continue
-
-        ctx = (s["unit"], s["shiftType"], s["weekday"])
-        stats_for_uid = {uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {}) for uid, _ in ranked}
-
-        top_list_report = sorted(ranked, key=lambda t: t[1], reverse=True)[:top_k]
-        enriched_top = []
-        for uid, p in top_list_report:
-            sstats = stats_for_uid.get(uid, {}) or {}
-            urec = users_by_id.get(uid, {})
-            enriched_top.append({
-                "userId": uid,
-                "p_calibrated": float(p),
-                "rw_assign_rate": sstats.get("rw_assign_rate", 0.0),
-                "rw_assign_rate_holiday": sstats.get("rw_assign_rate_holiday", 0.0),
-                "count_assigned": int(sstats.get("count_assigned", 0)),
-                "count_assigned_holiday": int(sstats.get("count_assigned_holiday", 0)),
-                "last_assigned_days": float(sstats.get("last_assigned_days", 9999.0)),
-                "userFTE": (urec.get("timed_properties", [{}])[0].get("weekly_hours", 40.0))/40.0
-            })
-        explanation["topCandidates"] = enriched_top
+        stats_uc = {
+            uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {})
+            for uid, _ in unconstrained_ranked
+        }
 
         beta1, beta2, beta3 = 0.10, 0.05, 0.05
         C, L = 5.0, 60.0
-        is_holiday = int(s.get("isHoliday", 0)) == 1
         holiday_weight = 0.08
 
-        def blended_score(uid: str, p: float) -> float:
-            st = stats_for_uid.get(uid, {}) or {}
-            rw = float(st.get("rw_assign_rate", 0.0))
-            rw_hol = float(st.get("rw_assign_rate_holiday", 0.0))
-            cnt = float(st.get("count_assigned", 0.0))
-            last_days = float(st.get("last_assigned_days", 9999.0))
-            cnt_norm = min(cnt / C, 1.0)
-            recency_bonus = max(0.0, 1.0 - min(last_days, L) / L)
-            holiday_bonus = holiday_weight * rw_hol if is_holiday else 0.0
-            return float(p) + beta1 * rw + beta2 * cnt_norm + beta3 * recency_bonus + holiday_bonus
+        def blended_uc(uid: str, p: float) -> float:
+            st = stats_uc.get(uid, {}) or {}
+            cnt_norm = min(float(st.get("count_assigned", 0.0)) / C, 1.0)
+            recency = max(0.0, 1.0 - min(float(st.get("last_assigned_days", 9999)), L) / L)
+            holiday = holiday_weight * float(st.get("rw_assign_rate_holiday", 0.0)) if is_holiday else 0.0
+            return float(p) + beta1 * float(st.get("rw_assign_rate", 0.0)) + beta2 * cnt_norm + beta3 * recency + holiday
 
-        explanation["decisionPath"].append("greedy_pick_with_soft_fairness_and_employee_opt_out_cap")
+        for uid, p in unconstrained_ranked:
+            urec = users_by_id.get(uid, {})
+            tp = (urec.get("timed_properties") or [{}])[0]
+            soft = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
+            hard = tp.get("max_weekly_hours")
+            if hard is None and fairness_opt_out_hard_cap_delta_hours is not None:
+                hard = soft + fairness_opt_out_hard_cap_delta_hours
 
-        try:
-            hrs = (datetime.combine(to_date(s["date"]), parse_time_simple(s["end"])) -
-                   datetime.combine(to_date(s["date"]), parse_time_simple(s["start"]))).seconds / 3600.0
-        except Exception:
-            hrs = 8.0
-        wk = week_key_from_date_str(s["date"])
+            new_hours = assigned_hours_by_user_week[(uid, wk)] + hrs
+            final = blended_uc(uid, p) - fairness_penalty(new_hours, soft, hard)
 
-        scored: List[Tuple[str, float, float, float, float]] = []
-        fairness_skips_hardcap = []
+            output[sid]["unconstrained"].append({
+                "userId": uid,
+                "final_score": float(final)
+            })
+
+        output[sid]["unconstrained"].sort(key=lambda d: d["final_score"], reverse=True)
+
+        # -------------------------
+        # CONSTRAINED SCORING
+        # -------------------------
+        ranked = score_candidates_for_shift(
+            s, [], users_by_id,
+            stats_by_user_ctx, model, iso_calibrator, features
+        )
+
+        stats_c = {
+            uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {})
+            for uid, _ in ranked
+        }
+
+        def blended_c(uid: str, p: float) -> float:
+            st = stats_c.get(uid, {}) or {}
+            cnt_norm = min(float(st.get("count_assigned", 0.0)) / C, 1.0)
+            recency = max(0.0, 1.0 - min(float(st.get("last_assigned_days", 9999)), L) / L)
+            holiday = holiday_weight * float(st.get("rw_assign_rate_holiday", 0.0)) if is_holiday else 0.0
+            return float(p) + beta1 * float(st.get("rw_assign_rate", 0.0)) + beta2 * cnt_norm + beta3 * recency + holiday
 
         for uid, p in ranked:
             urec = users_by_id.get(uid, {})
             tp = (urec.get("timed_properties") or [{}])[0]
-            soft_cap_uid = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
-            hard_cap_uid = tp.get("max_weekly_hours", None)
-            if hard_cap_uid is None and fairness_opt_out_hard_cap_delta_hours is not None:
-                hard_cap_uid = soft_cap_uid + fairness_opt_out_hard_cap_delta_hours
+            soft = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
+            hard = tp.get("max_weekly_hours")
+            if hard is None and fairness_opt_out_hard_cap_delta_hours is not None:
+                hard = soft + fairness_opt_out_hard_cap_delta_hours
 
-            current_week_hours = assigned_hours_by_user_week[(uid, wk)]
-            new_hours = current_week_hours + hrs
-
-            if hard_cap_uid is not None and new_hours > hard_cap_uid:
-                fairness_skips_hardcap.append({
-                    "userId": uid, "reason": "opt_out_hard_cap", "week": wk,
-                    "current_week_hours": float(current_week_hours),
-                    "hard_cap_uid": float(hard_cap_uid)
-                })
+            new_hours = assigned_hours_by_user_week[(uid, wk)] + hrs
+            if hard is not None and new_hours > hard:
                 continue
 
-            base = blended_score(uid, p)
-            pen = fairness_penalty(new_hours, soft_cap_uid, hard_cap_uid)
-            final = base - pen
-            explanation["candidatesAfterFinalScoreOnly"].append({
+            final = blended_c(uid, p) - fairness_penalty(new_hours, soft, hard)
+
+            output[sid]["constrained"].append({
                 "userId": uid,
                 "final_score": float(final)
             })
-            scored.append((uid, final, base, pen, float(new_hours)))
 
-        explanation["decisionPath"].append("scoring_unconstrained")
-        unconstrained_ranked = score_candidates_for_shift(
-            s, unconstrained_candidates, users_by_id, stats_by_user_ctx, model, iso_calibrator, features
-        )
-        stats_for_uid_uc = {uid: (stats_by_user_ctx.get(uid, {}) or {}).get(ctx, {}) for uid, _ in unconstrained_ranked}
-        def blended_score_uc(uid: str, p: float) -> float:
-            st = stats_for_uid_uc.get(uid, {}) or {}
-            rw = float(st.get("rw_assign_rate", 0.0))
-            rw_hol = float(st.get("rw_assign_rate_holiday", 0.0))
-            cnt = float(st.get("count_assigned", 0.0))
-            last_days = float(st.get("last_assigned_days", 9999.0))
-            cnt_norm = min(cnt / C, 1.0)
-            recency_bonus = max(0.0, 1.0 - min(last_days, L) / L)
-            holiday_bonus = holiday_weight * rw_hol if is_holiday else 0.0
-            return float(p) + beta1 * rw + beta2 * cnt_norm + beta3 * recency_bonus + holiday_bonus
-        for uid, p in unconstrained_ranked:
-            urec = users_by_id.get(uid, {})
-            tp = (urec.get("timed_properties") or [{}])[0]
-            soft_cap_uid = tp.get("weekly_hours", fairness_weekly_soft_cap_hours or 40.0)
-            hard_cap_uid = tp.get("max_weekly_hours", None)
-            if hard_cap_uid is None and fairness_opt_out_hard_cap_delta_hours is not None:
-                hard_cap_uid = soft_cap_uid + fairness_opt_out_hard_cap_delta_hours
-            current_week_hours = assigned_hours_by_user_week[(uid, wk)]
-            new_hours = current_week_hours + hrs
-            base_uc = blended_score_uc(uid, p)
-            pen_uc = fairness_penalty(new_hours, soft_cap_uid, hard_cap_uid)
-            final_uc = base_uc - pen_uc
-            explanation["unconstrainedCandidatesAfterFinalScoreOnly"].append({
-                "userId": uid,
-                "final_score": float(final_uc)
-            })
+        output[sid]["constrained"].sort(key=lambda d: d["final_score"], reverse=True)
 
-        if not scored:
-            explanation["notes"].append("no candidate within employee opt-out hard cap (constrained)")
-            if fairness_skips_hardcap:
-                explanation["notes"].append({"hard_cap_skipped": fairness_skips_hardcap})
-            explanation["unconstrainedCandidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
-            report["shifts"].append(explanation)
-            continue
+    return output
 
-        scored_sorted = sorted(scored, key=lambda t: t[1], reverse=True)
-        chosen, final_score, base_score, penalty_applied, final_week_hours = scored_sorted[0]
+# =========== SAVING & LOADING MODELS ===========
 
-        result[sid] = chosen
-        assigned_by_user[chosen].append(sid)
-        assigned_hours_by_user_week[(chosen, wk)] += hrs
-        assigned_hours_by_user_global[chosen] += hrs
-        all_assignments_by_user[chosen].append(s)
+def save_model_bundle(model, iso, features, save_dir="model_bundle"):
+    os.makedirs(save_dir, exist_ok=True)
+    model_path = os.path.join(save_dir, "lgb_model.txt")
+    model.save_model(model_path)
+    iso_path = os.path.join(save_dir, "isotonic_calibrator.pkl")
+    joblib.dump(iso, iso_path)
+    meta = {
+        "features": features,
+        "lightgbm_params": model.params if hasattr(model, "params") else None
+    }
+    meta_path = os.path.join(save_dir, "metadata.json")
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump(meta, f, indent=2)
+    return {"model": model_path, "iso": iso_path, "meta": meta_path}
 
-        explanation["chosen"] = {
-            "userId": chosen,
-            "score_after_penalty": float(final_score),
-            "base_score": float(base_score),
-            "fairness_penalty": float(penalty_applied),
-            "week_key": wk,
-            "week_hours_after": float(final_week_hours)
-        }
-        if fairness_skips_hardcap:
-            explanation["notes"].append({"hard_cap_skipped": fairness_skips_hardcap})
-
-        explanation["candidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
-        explanation["unconstrainedCandidatesAfterFinalScoreOnly"].sort(key=lambda d: d["final_score"], reverse=True)
-        report["shifts"].append(explanation)
-
-    for uid in users_by_id.keys():
-        report["usersSummary"][uid] = {
-            "totalHours": float(assigned_hours_by_user_global.get(uid, 0.0)),
-            "assignedCount": len(assigned_by_user.get(uid, []))
-        }
-    return result, report
-
+def load_model_bundle(save_dir="model_bundle"):
+    model_path = os.path.join(save_dir, "lgb_model.txt")
+    booster = lgb.Booster(model_file=model_path)
+    iso_path = os.path.join(save_dir, "isotonic_calibrator.pkl")
+    iso = joblib.load(iso_path)
+    meta_path = os.path.join(save_dir, "metadata.json")
+    with open(meta_path, "r", encoding="utf-8") as f:
+        meta = json.load(f)
+    features = meta["features"]
+    return booster, iso, features
 
 # =========================
 # Build output
@@ -877,9 +735,6 @@ def build_assigned_output(report: dict) -> dict:
             "unconstrainedCandidates": unc
         })
     return {"shifts": shifts}
-
-
-import os
 
 def assign_top_candidates_to_shifts(base_json_path: str,
                                     model_output_path: str,
